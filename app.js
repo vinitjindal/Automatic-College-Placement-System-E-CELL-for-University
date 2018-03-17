@@ -1,9 +1,52 @@
-var express=require("express");
-var app=express();
+// ================
+// Declarations
+// ================
+
+var express     =   require("express"),
+    app         =   express(),
+    bodyParser  =   require("body-parser"),
+    mongoose    =   require("mongoose"),
+    ejs         =   require("ejs");
+
+mongoose.connect("mongodb://localhost/company");
+app.use(bodyParser.urlencoded({extended:true}));
+app.set("view engine","ejs");
 
 app.use(express.static("public"));
 
 app.set("view engine","ejs");
+
+var companySchema = new mongoose.Schema({
+    companyName:String,
+    branch:String,
+    lastDate:String,
+    QuerlyID:String,
+    projectSkill:String,
+    minCgpa:String,
+    typeCompany:String
+});
+
+var Company = mongoose.model("Company",companySchema);
+
+// Company.create({
+//     companyName : "armin",
+//     branch : "CSE",
+//     lastDate : "21/12/2017",
+//     QuerlyID : "23@gmail.com", 
+//     projectSkill : "CD",
+//     minCgpa :"34",
+//     typeCompany : "Network"
+    
+// },function(err,company){
+//     if(err){
+//         console.log("Something is wrong");
+//     }
+//     else
+//     {
+//         console.log(company);
+//     }
+// });
+
 
 // ======= ROUTES ==========
 app.get("/",function(req,res){
@@ -15,6 +58,21 @@ app.get("/login",function(req, res) {
 })
 
 app.get("/user/admin",function(req, res) {
+    res.render("admin.ejs");
+})
+
+app.post("/user/admin",function(req, res) {
+    //Get data from form & Save it to DB ;
+    Company.create(req.body.company,function(err,newCompany){
+        if(err){
+            console.log("error created");
+        }
+        else
+        {
+            console.log("DB created");
+            console.log(newCompany);
+        }
+    });    
     res.render("admin.ejs");
 })
 
