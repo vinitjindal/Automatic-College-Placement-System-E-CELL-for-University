@@ -72,12 +72,21 @@ app.post("/user/admin",function(req, res) {
             console.log("DB created");
             console.log(newCompany);
         }
-    });    
-    res.render("admin.ejs");
+    });
+    res.redirect("/user/admin/adminView");
 })
 
 app.get("/user/admin/adminView",function(req, res) {
-    res.render("adminView.ejs");
+    //Get all Company From Database
+    Company.find({},function(err,allCompany){
+        if(err){
+            console.log(err);
+        }
+        else
+        {
+            res.render("adminView.ejs",{companies:allCompany});
+        }
+    });
 })
 
 app.get("/user/admin/adminRecruited",function(req, res) {
