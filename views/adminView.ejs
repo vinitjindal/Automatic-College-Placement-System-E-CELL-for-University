@@ -38,8 +38,8 @@ button.viewButton:hover{
 <body>
     <div class="container formnav">
         <ul class="nav nav-pills">
-            <li ><a href="adminInput.html">Create Recruiter Profile</a></li>
-            <li  class="active"><a href="adminView.html">View Recruiters Profile</a></li>
+            <li ><a href="/user/admin">Create Recruiter Profile</a></li>
+            <li  class="active"><a href="">View Recruiters Profile</a></li>
             <li class="navbar-right dropdown-toggle" id="dropdownMenu1">
                <a href="#">
                  Username<i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
@@ -67,15 +67,17 @@ button.viewButton:hover{
         <td>branch</td>
         <td>Date</td>
         <td>View</td>
+        <td>Delete</td>
         <tbody>
-          <% companies.ForEach(function(company){ %>
+          <% companies.forEach(function(company){ %>
           <tr>
-          <td><%=company.companyName%></td>
-          <td><%=company.branch%></td>          
-          <td><%=company.QuerlyID%></td>          
-          <td><button class="viewButton" type="button" name="button"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></i></button> </td>
+          <td><%= company.companyName %></td>
+          <td><%= company.branch %></td>          
+          <td><%= company.lastDate %></td>          
+          <td><button class="viewButton" type="button" name="view"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></i></button> </td>
+          <td><button class="viewButton" type="button" name="delete"><i class="fa fa-times" aria-hidden="true"></i></button> </td>
             </tr>
-          <% });%>
+            <% });%>
         </tbody>
       </tr>
     </thead>

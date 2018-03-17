@@ -50,15 +50,15 @@ var Company = mongoose.model("Company",companySchema);
 
 // ======= ROUTES ==========
 app.get("/",function(req,res){
-    res.render("index.ejs");
+    res.render("index");
 })
 
 app.get("/login",function(req, res) {
-    res.render("login.ejs");
+    res.render("login");
 })
 
 app.get("/user/admin",function(req, res) {
-    res.render("admin.ejs");
+    res.render("admin");
 })
 
 app.post("/user/admin",function(req, res) {
@@ -74,7 +74,7 @@ app.post("/user/admin",function(req, res) {
         }
     });
     res.redirect("/user/admin/adminView");
-})
+});
 
 app.get("/user/admin/adminView",function(req, res) {
     //Get all Company From Database
@@ -84,21 +84,21 @@ app.get("/user/admin/adminView",function(req, res) {
         }
         else
         {
-            res.render("adminView.ejs",{companies:allCompany});
+            res.render("adminView",{companies:allCompany});
         }
     });
 })
 
 app.get("/user/admin/adminRecruited",function(req, res) {
-    res.render("adminRecruited.ejs");
+    res.render("adminRecruited");
 })
 
 app.get("/user/:username/editApp",function(req,res){
-    res.render("userInput.ejs");
+    res.render("userInput");
 })
 
 app.get("/user/:username/userView",function(req, res) {
-    res.render("userView.ejs");
+    res.render("userView");
 })
 
 // ==========================

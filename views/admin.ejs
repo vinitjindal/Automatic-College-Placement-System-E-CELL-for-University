@@ -49,8 +49,8 @@ div.container.formnav{
 <body>
     <div class="container formnav">
         <ul class="nav nav-pills">
-            <li class="active"><a href="#">Create Recruiter Profile</a></li>
-            <li><a href="adminView.html">View Recruiters Profile</a></li>
+            <li class="active"><a href="/user/admin">Create Recruiter Profile</a></li>
+            <li><a href="/user/admin/adminView">View Recruiters Profile</a></li>
             <li class="navbar-right"><a href="#">
   Username<i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
               </li>
@@ -76,7 +76,7 @@ div.container.formnav{
                 </div>
                 <div class="col-md-4">
                     <h5>Last Applying Date</h5>
-                    <input class="form-control" type="date" name="company[lastDate]">
+                    <input class="form-control" min="01-01-2018" max="01-01-2099" type="date" name="company[lastDate]" >
                 </div>
                 <div class="col-md-4">
                     <h5>E-mail ID of company</h5>
@@ -129,6 +129,7 @@ div.container.formnav{
         delimiter: ', ', /* space and comma */
         placeholder: 'e.g.,C++,Android etc'
     });
+    
     </script>
 </body>
 
