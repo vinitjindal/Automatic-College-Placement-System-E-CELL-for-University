@@ -1,0 +1,22 @@
+input.form-control{
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+div.col-md-2{
+  height:auto;
+}
+
+div.row{
+  margin-bottom:5px;
+}
+
+button.btn.btn-default{
+  text-align:center;
+}
+
+div.row.eduinput{
+  margin-top:15px;
+  margin-bottom:20px;
+}
+

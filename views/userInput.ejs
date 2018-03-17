@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormDesign</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/styles_form.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/yahoo/pure-release/v0.6.0/pure-min.css">
+    <link rel="stylesheet" href="/assets/css/jquery.tag-editor.css">
+<style media="screen">
+  div.container.formnav{
+    margin-top: 50px;
+  }
+  div.upload{
+    margin-bottom: 30px;
+  }
+div.container.formnav{
+  margin-top: 50px;
+}
+.tag-editor .tag-editor-tag {
+    padding-left: 5px;
+    color: white;
+    background: #e74c3c;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 2px 0 0 2px;
+}
+.tag-editor .tag-editor-delete {
+      background: #e74c3c;
+    cursor: pointer;
+    border-radius: 0 2px 2px 0;
+    padding-left: 3px;
+    padding-right: 4px;
+}
+.tag-editor .tag-editor-delete i::before {
+    font-size: 16px;
+    color: white;
+    content: "×";
+    font-style: normal;
+}
+button.viewButton{
+  font-size: 1.4em;
+  border: none;
+  background-color: transparent;
+}
+button.viewButton:hover{
+  color: #e74c3c;
+}
+
+</style>
+
+</head>
+<body>
+    <div class="container formnav">
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#">Edit Details</a></li>
+            <li><a href="userView">View Application</a></li>
+            <li class="navbar-right"><a href="#">
+              Username<i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
+              <!-- <div class="dropup">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropup
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div> -->
+
+
+            </li>
+        </ul>
+        <br>
+        <form>
+            <h4>Personal Details</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <input class="form-control" type="text" name="fname" placeholder="First Name">
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control" type="text" name="mname" placeholder="Middle Name">
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control" type="text" name="lname" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Mobile No:</h5>
+                    <input class="form-control" type="text" name="mobile" placeholder="Enter 10 Digit Mobile Number">
+                </div>
+                <div class="col-md-4">
+                    <h5>Gender:</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Female</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Male</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Date of Birth:</h5>
+                    <input class="form-control" type="date">
+                </div>
+                <div class="col-md-12">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Father's Name</h5>
+                    <input class="form-control" type="text" name="fatherName">
+                </div>
+                <div class="col-md-4">
+                    <h5>E-Mail ID</h5>
+                    <input class="form-control" type="email" name="eMail" placeholder="abc@xyz.com">
+                </div>
+            </div>
+            <h4>Address </h4>
+            <div class="row">
+                <div class="col-md-2">
+                    <h5>State </h5></div>
+                <div class="col-md-4">
+                    <select class="form-control">
+                        <optgroup label="Select Your State">
+                            <option value="12" selected="">New Delhi</option>
+                            <option value="13">Chandigarh</option>
+                            <option value="14">Mandi</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h5>Town/Village </h5></div>
+                <div class="col-md-4">
+                    <input class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h5>House No:/Flat No:</h5></div>
+                <div class="col-md-4">
+                    <input class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h5>Street </h5></div>
+                <div class="col-md-4">
+                    <input class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h5>Pin Code</h5></div>
+                <div class="col-md-4">
+                    <input class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row eduinput">
+                <div style="width:150px;" class="col-md-2">
+                    <h5>School Name</h5>
+                    <input class="form-control" type="text">
+                </div>
+                <div style="width:120px;" class="col-md-2">
+                    <h5>Type </h5>
+                    <select class="form-control">
+                        <option value="12" selected="">10th </option>
+                        <option value="13">+2 or equivalent</option>
+                        <option value="14">Under Graduation</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <h5>Board </h5>
+                    <input class="form-control" type="text" name="board" value="">
+                </div>
+                <div class="col-md-2">
+                    <h5>Stream </h5>
+                    <input class="form-control" type="text">
+                </div>
+                <div style="width:100px;" class="col-md-1">
+                    <h5>CGPA obt.</h5>
+                    <input class="form-control" type="number"min="0" max="1000">
+                </div>
+                <div style="width:100px;" class="col-md-1">
+                    <h5>Max.CGPA </h5>
+                    <input class="form-control" type="number"min="0" max="1000">
+                </div>
+                <div style=" margin-top:35px; width:100px;" class="col-md-2">
+                <button class="viewButton" type="button" name="button"><i class="fa fa-check" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>School Name</th>
+                                    <th>Type </th>
+                                    <th>Board </th>
+                                    <th>Year of Passing</th>
+                                    <th>Marks/CGPA</th>
+                                    <th>Max. Marks(CGPA</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cell 2</td>
+                                    <td>Cell 3</td>
+                                    <td>Cell 4</td>
+                                    <td>Cell 5</td>
+                                    <td>Cell 6</td>
+                                    <td>Cell 7</td>
+                                    <td style="width:20px;"><div>
+                                    <button class="viewButton" type="button" name="button"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+    <div class="upload">
+            <div class="row">
+    <div class="col-md-6">
+        <p>*Upload single PDF document consisting of :</p>
+        <ul>
+            <li>Resume (CV)</li>
+            <li>10th Certificate</li>
+            <li>+2 Certificate</li>
+            <li>College Semester Grade Cards</li>
+        </ul>
+        <input type="file" class="uploadbutton" name="doc" value="">
+    </div>
+</div>
+    </div>
+    <div class="row">
+        <div style="margin-bottom:10px;" class="col-md-12">
+          <h5>Enter Technical Skills </h5>
+            <textarea class="skillTag" name="skillTags" rows="8" cols="80"></textarea>
+        </div>
+    </div>
+            <div class="row">
+                <div class="col-md-12 lower">
+                    <button class="btn btn-primary" type="submit">Save </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.caret.min.js"></script>
+    <script src="/assets/js/jquery.tag-editor.js"></script>
+    <script type="text/javascript">
+
+    $(document).on('keyup keypress', 'form input[type="text"]', function(e) {
+      if(e.which == 13) {
+        e.preventDefault();
+        return false;
+      }
+    });
+    $('.skillTag').tagEditor({
+        delimiter: ', ', /* space and comma */
+        placeholder: 'e.g.,C++,Android etc'
+    });
+    </script>
+</body>
+
+</html>

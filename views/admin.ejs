@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormDesign</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/styles_form.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/yahoo/pure-release/v0.6.0/pure-min.css">
+    <link rel="stylesheet" href="/assets/css/jquery.tag-editor.css">
+<style media="screen">
+  div.container.formnav{
+    margin-top: 50px;
+  }
+  div.upload{
+    margin-bottom: 30px;
+  }
+div.container.formnav{
+  margin-top: 50px;
+}
+.tag-editor .tag-editor-tag {
+    padding-left: 5px;
+    color: white;
+    background: #e74c3c;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 2px 0 0 2px;
+}
+.tag-editor .tag-editor-delete {
+      background: #e74c3c;
+    cursor: pointer;
+    border-radius: 0 2px 2px 0;
+    padding-left: 3px;
+    padding-right: 4px;
+}
+.tag-editor .tag-editor-delete i::before {
+    font-size: 16px;
+    color: white;
+    content: "×";
+    font-style: normal;
+}
+
+</style>
+
+</head>
+<body>
+    <div class="container formnav">
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#">Create Recruiter Profile</a></li>
+            <li><a href="adminView.html">View Recruiters Profile</a></li>
+            <li class="navbar-right"><a href="#">
+  Username<i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
+              </li>
+        </ul>
+        <br>
+        <form>
+            <h4>Company Details</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <input class="form-control" type="text" name="Company Name" placeholder="Company Name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Branch: </h5>
+                    <select class="form-control">
+                        <optgroup label="Choose branch">
+                            <option value="12" selected="">CSE</option>
+                            <option value="13">ECE</option>
+                            <option value="14">BCA</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <h5>Last Applying Date</h5>
+                    <input class="form-control" type="date">
+                </div>
+                <div class="col-md-4">
+                    <h5>E-mail ID of company</h5>
+                    <input class="form-control" type="email" name="eMail" placeholder="abc@xyz.com">
+                </div>
+                <div class="col-md-12">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Profile (Skills) Required</h5>
+                    <textarea class="recruitskillTag" name="recruitskillTags"></textarea>
+                </div>
+            </div>
+            <h4>Candidate Requirement</h4>
+            <div class="row">
+                <div class="col-md-2">
+                    <h5>Max. CGPA</h5></div>
+                <div class="col-md-2">
+                    <input class="form-control" type="number" name="maxCGPA" min="0" max="10">
+                </div>
+                <div class="col-md-2">
+                    <h5>Min. CGPA</h5></div>
+                <div class="col-md-2">
+                    <input class="form-control" type="number" name="minCGPA" min="0" max="10">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h5>Type Of Company</h5></div>
+                <div class="col-md-2">
+                    <input class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 lower">
+                    <button class="btn btn-primary" type="submit">Save </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.caret.min.js"></script>
+    <script src="/assets/js/jquery.tag-editor.js"></script>
+    <script type="text/javascript">
+
+    $(document).on('keyup keypress', 'form input[type="text"]', function(e) {
+      if(e.which == 13) {
+        e.preventDefault();
+        return false;
+      }
+    });
+    $('.recruitskillTag').tagEditor({
+        delimiter: ', ', /* space and comma */
+        placeholder: 'e.g.,C++,Android etc'
+    });
+    </script>
+</body>
+
+</html>

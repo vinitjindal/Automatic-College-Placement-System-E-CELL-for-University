@@ -1,0 +1,248 @@
+
+div.jumbotron{
+  padding-right:50px;
+  background-image:url("https://images.unsplash.com/photo-1491336477066-31156b5e4f35?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b7e9246619019d54ead8fe9ea7c821a9&auto=format&fit=crop&w=1500&q=82");
+  line-height:3px;
+  height:400px;
+  object-fit: fill ;
+  background-size: cover;
+}
+
+div.header_jumbotron{
+  background-color:red;
+}
+
+nav.navbar.navbar-default{
+  margin-bottom:0px;
+}
+h1.text-right{
+  color:white;
+}
+
+p.text-right{
+  font-size:30px;
+  line-height:1.2;
+}
+#success_message{ display: none;}
+
+p.text-right.link{
+  color:yellow;
+}
+
+nav.navbar.navbar-default{
+  background:none;
+  background-image:none;
+  background-color:none;
+}
+
+h1{
+  text-align:center;
+}
+
+p{
+  font-size:20px;
+  text-align:center;
+}
+
+h1{
+  padding-left:5px;
+}
+
+div.container-fluid.with_para{
+  padding-left:50px;
+  padding-right:50px;
+}
+
+i.glyphicon.glyphicon-pencil.item{
+  font-size:50px;
+  text-align:center;
+}
+
+i.fa.fa-pencil.item{
+  margin-top:50px;
+  text-align:center;
+  font-size:60px;
+  width:100%;
+}
+
+i.fa.fa-gamepad.item{
+  font-size:60px;
+  text-align:center;
+  margin-top:50px;
+  width:100%;
+}
+
+i.fa.fa-cloud-upload.item{
+  margin-top:50px;
+  font-size:60px;
+  text-align:center;
+  width:100%;
+}
+
+button.btn.btn-default{
+  text-align:center;
+}
+
+button.btn.btn-default{
+  text-align:center;
+}
+
+div.subscribe_footer{
+  text-align:center;
+}
+
+input.input_subscribe{
+  height:auto;
+  border-radius:6px;
+  padding: 8px 12px;
+    font-size: 13px;
+    border-style: none;
+}
+div.container.mid{
+  background-color: #FF5722;
+}
+@media (max-width:767px) {
+  div.col-md-12.col-sm-11{
+    padding-left:35px;
+  }
+}
+
+div.col-md-12.col-sm-11{
+  padding-left:50px;
+}
+
+@media (max-width:991px) {
+  div.col-md-12{
+    margin-left:70px;
+  }
+}
+
+div.col-md-12{
+  padding-left:50px;
+}
+
+@media (min-width:1200px) {
+  div.col-lg-11.col-md-12{
+    padding-left:120px;
+  }
+}
+
+div.container.placementlogo{
+  margin-top:35px;
+  margin-bottom:35px;
+}
+
+div.small_dev{
+  text-align:center;
+}
+div.container-fluid.subscribe {
+    background: url(assets/img/ian-schneider-66374.jpg);
+    height: 400px;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+h1.feature_text{
+  color: white;
+}
+
+.fa{
+  color: white;
+  font-size: 30px;
+}
+div.feature.button{
+  text-align:center;
+  padding-bottom: 30px;
+}
+button.btn.btn-default{
+  border-color: #ffc80b;
+  border-radius: 20px;
+background: #ffc80b;
+color: #4b494c;
+text-transform: uppercase;
+padding-left: 25px;
+padding-right: 25px;
+padding-top: 10px;
+padding-bottom: 10px;
+
+}
+div.subscribetext{
+  padding-top: 200px;
+}
+.panel{
+  border: 0px;
+  background: rgba(0,0,0,0.5);
+  color: #ffff;
+  text-align: center;
+  padding-top: 50px;
+}
+.panel:hover{
+  background: rgba(0,0,0,0.7);
+}
+h4.loginh4{
+  padding: 0;
+  margin: 0;
+  color: white;
+
+}
+.textstyle{
+  color: white;
+}
+.para{
+  font-size: 15px;
+}
+.feature{
+  margin-bottom: 25px;
+}
+.featurehead{
+  font-size: 20px;
+}
+i.fa.fa-user.item::before{
+  background-color: rgba(0,0,0,0.2);
+  background-size: cover;
+  padding: 20px;
+  border-radius : 100%;
+}
+i.fa.fa-pencil.item::before{
+  background-color: #ff6f42;
+  background-size: cover;
+  padding: 25px;
+  border-radius : 100%;
+}
+i.fa.fa-gamepad.item::before{
+  background-color: #ff6f42;
+  background-size: cover;
+  padding: 25px;
+  border-radius : 100%;
+}
+i.fa.fa-cloud-upload.item::before{
+  background-color: #ff6f42;
+  background-size: cover;
+  padding: 25px;
+  border-radius : 100%;
+}
+i.fa.fa-pencil.item {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 40px;
+    width: 100%;
+}
+i.fa.fa-gamepad.item {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 40px;
+    width: 100%;
+}i.fa.fa-cloud-upload.item {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 40px;
+    width: 100%;
+}
+.spacefeature{
+  margin-top: 45px;
+}
+div.small_dev {
+    text-align: center;
+}
+.subscribetextinc{
+  font-size: 5em;
+}
