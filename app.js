@@ -2,15 +2,17 @@
 // Declarations
 // ================
 
-var express     =   require("express"),
-    app         =   express(),
-    bodyParser  =   require("body-parser"),
-    mongoose    =   require("mongoose"),
-    ejs         =   require("ejs");
+var express         =   require("express"),
+    app             =   express(),
+    bodyParser      =   require("body-parser"),
+    mongoose        =   require("mongoose"),
+    ejs             =   require("ejs"),
+    methodOverride  =   require("method-override");
 
 mongoose.connect("mongodb://localhost/company");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
+app.use(methodOverride("_method"));
 
 app.use(express.static("public"));
 
@@ -87,6 +89,9 @@ app.get("/user/admin/adminView",function(req, res) {
             res.render("adminView",{companies:allCompany});
         }
     });
+})
+app.delete("/user/admin/adminView/:id",function(req, res) {
+    res.send("Page Deleted");
 })
 
 app.get("/user/admin/adminRecruited",function(req, res) {

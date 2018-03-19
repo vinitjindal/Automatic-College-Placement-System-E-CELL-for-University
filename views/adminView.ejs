@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FormDesign</title>
+    <title>View Recruited Company Profile</title>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/styles_form.css">
@@ -73,9 +73,9 @@ button.viewButton:hover{
           <tr>
           <td><%= company.companyName %></td>
           <td><%= company.branch %></td>          
-          <td><%= company.lastDate %></td>          
-          <td><button class="viewButton" type="button" name="view"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></i></button> </td>
-          <td><button class="viewButton" type="button" name="delete"><i class="fa fa-times" aria-hidden="true"></i></button> </td>
+          <td><%= company.lastDate%></td>          
+          <td><form  ><button class="viewButton" type="submit" value="<%=company._id %>" name="view"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></i></button></form></td>
+          <td><form action="/user/admin/adminView/<%=company._id%>?_method=DELETE" method="POST"><button class="viewButton" type="submit" value="<%=company._id %>"name="delete"><i class="fa fa-times" aria-hidden="true"></i></button></form></td>
             </tr>
             <% });%>
         </tbody>
