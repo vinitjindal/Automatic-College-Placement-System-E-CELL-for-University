@@ -24,9 +24,15 @@ var companySchema = new mongoose.Schema({
     lastDate:String,
     QuerlyID:String,
     projectSkill:String,
-    minCgpa:String,
+    minCgpa:Number,
     typeCompany:String
 });
+
+var studentSchema = new mongoose.Schema({
+    
+});
+
+
 
 var Company = mongoose.model("Company",companySchema);
 
@@ -117,7 +123,7 @@ app.get("/user/admin/adminRecruited/:id",function(req, res) {
     });
 })
 
-app.get("/user/:username/editApp",function(req,res){
+app.get("/user/:username/userEdit",function(req,res){
     res.render("userInput");
 })
 
