@@ -74,7 +74,7 @@ button.viewButton:hover{
           <td><%= company.companyName %></td>
           <td><%= company.branch %></td>          
           <td><%= company.lastDate%></td>          
-          <td><form  ><button class="viewButton" type="submit" value="<%=company._id %>" name="view"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></i></button></form></td>
+          <td><form action="/user/admin/adminRecruited/<%=company._id%>" method="GET"><button class="viewButton" type="submit" value="<%=company._id %>" name="view"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></i></button></form></td>
           <td><form action="/user/admin/adminView/<%=company._id%>?_method=DELETE" method="POST"><button class="viewButton" type="submit" value="<%=company._id %>"name="delete"><i class="fa fa-times" aria-hidden="true"></i></button></form></td>
             </tr>
             <% });%>

@@ -91,11 +91,30 @@ app.get("/user/admin/adminView",function(req, res) {
     });
 })
 app.delete("/user/admin/adminView/:id",function(req, res) {
-    res.send("Page Deleted");
+    Company.findByIdAndRemove(req.params.id,function(err){
+        if(err)
+        {
+        console.log(err);    
+        }
+        else
+        {
+            res.redirect("/user/admin/adminView/");
+        }
+        
+    });
 })
 
-app.get("/user/admin/adminRecruited",function(req, res) {
-    res.render("adminRecruited");
+app.get("/user/admin/adminRecruited/:id",function(req, res) {
+    
+    Company.findById(req.params.id,function(err,Company){
+        if(err){
+            console.log(err);
+        }
+        else
+        {
+            res.render("adminRecruited",{company:Company});
+        }
+    });
 })
 
 app.get("/user/:username/editApp",function(req,res){

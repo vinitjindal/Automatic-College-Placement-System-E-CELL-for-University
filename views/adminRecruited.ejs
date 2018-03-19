@@ -25,17 +25,12 @@ div.row.cgpa{
         <div class="row">
             <div class="col-md-6"><img src="/assets/img/logo_chitkara_black.png" width="200" height="50"></div>
             <div  class="col-md-6">
-                <p style="vertical-align:middle;padding:5px;text-align:right;">Date : _______________</p>
-            </div>
-        </div>
-        <div class="row cgpa">
-            <div class="col-md-6">
-                <p>Max. CGPA :</p>
+                <p style="vertical-align:middle;padding:5px;text-align:right;">Last Applying Date :<span style="text-decoration:underline;"><%=company.lastDate%></span></p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <p>Min. CGPA :</p>
+                <p>Min. CGPA : <%=company.minCgpa%></p>
             </div>
         </div>
     </div>
@@ -51,9 +46,9 @@ div.row.cgpa{
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 3</td>
+                        <td><%=company.companyName%></td>
+                        <td><%=company.typeCompany%></td>
+                        <td><%=company.projectSkill%></td>
                     </tr>
                     <tr></tr>
                 </tbody>
@@ -65,7 +60,6 @@ div.row.cgpa{
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>No. </th>
                         <th>Student Name</th>
                         <th>Roll. Number </th>
                         <th>E-Mail ID</th>
@@ -76,7 +70,6 @@ div.row.cgpa{
                         <td>Cell 1</td>
                         <td>Cell 2</td>
                         <td>Cell 3</td>
-                        <td>Cell 4</td>
                     </tr>
                     <tr></tr>
                 </tbody>
