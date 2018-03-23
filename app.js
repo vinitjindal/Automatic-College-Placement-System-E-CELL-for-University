@@ -30,6 +30,7 @@ var companySchema = new mongoose.Schema({
 
 var studentSchema = new mongoose.Schema({
     rollNo:String,
+    password:String,
     firstName:String,
     midName:String,
     lastName:String,
@@ -98,6 +99,10 @@ app.get("/",function(req,res){
 
 app.get("/login",function(req, res) {
     res.render("login");
+})
+
+app.get("/signup",function(req, res) {
+    res.render("signup");
 })
 
 app.get("/user/admin",function(req, res) {
