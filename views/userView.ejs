@@ -27,17 +27,23 @@ div.row.cgpa{
             <div  class="col-md-6">
                 <p style="vertical-align:middle;padding:5px;text-align:right;">Date : _______________</p>
             </div>
+            <% var test=student; %>
+            <%= student %>
       <div class="container">
          <div class="row">
+             <%= test.dob%>
              <div class="col-md-12">
                  <h4>Personal Details:</h4></div>
              <div class="col-md-3">
                  <p>Full Name :</p>
-                 <p class="attribvalue">_________________________ </p>
+                 <p class="attribvalue"><%= student.firstName %></p>
              </div>
              <div class="col-md-3">
                  <p>Mobile No :</p>
-                 <p class="attribvalue">_________________________ </p>
+                 <p class="attribvalue"><%=student.mobileNo%></p>
+                 
+                 <%=student.mobileNo%>
+                 
              </div>
              <div class="col-md-3">
                  <p>Gender :</p>
