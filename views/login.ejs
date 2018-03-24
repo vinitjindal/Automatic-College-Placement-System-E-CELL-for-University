@@ -41,7 +41,7 @@
       </div>
       <div class="collapse navbar-collapse" id="navcol-1">
         <ul class="nav navbar-nav navitem  navbar-right">
-          <li class="active" role="presentation "><a href="#">Login </a></li>
+          <li class="active" role="presentation "><a href="/login">Login </a></li>
         </ul>
       </div>
     </div>
@@ -55,12 +55,12 @@
           <h4 class="loginh4" style="text-transform:uppercase;margin-top:30px;">Login</h4>
           <br>
           <div class="panel-body">
-            <form action="" method="get">
+            <form action="" method="POST">
               <div class="form-group">
-                <input type="email" name="userid" class="form-control" placeholder="Enter Roll No" formnovalidate="Enter" value="">
+                <input id="user" type="number" name="student[username]" class="form-control" placeholder="Enter Roll No" formnovalidate="Enter" value="">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="Enter password"name="pass" value="">
+                <input type="password" class="form-control" placeholder="Enter password"name="student[pass]" value="">
               </div>
               <div class="form-group">
                 <a style="color:white;" href="/signup"><p style="text-align:left;font-size:1.2em;" >Register Here</p></a>
@@ -85,6 +85,9 @@
 <!-- footer body finieshed -->
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script 
+
+
 </body>
 
 </html>

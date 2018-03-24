@@ -55,12 +55,18 @@
           <h4 class="loginh4" style="text-transform:uppercase;margin-top:30px;">Register</h4>
           <br>
           <div class="panel-body">
-            <form action="" method="get">
+            <form action="" method="POST">
               <div class="form-group">
-                <input type="email" name="userid" class="form-control" placeholder="Enter Roll No" formnovalidate="Enter" value="">
+                <input type="text" name="student[firstName]" class="form-control" placeholder="Enter First Name" formnovalidate="Enter" value="">
+              </div><div class="form-group">
+                <input type="text" name="student[midName]" class="form-control" placeholder="Enter Middle Name" formnovalidate="Enter" value="">
+              </div><div class="form-group">
+                <input type="text" name="student[lastName]" class="form-control" placeholder="Enter Last Name" formnovalidate="Enter" value="">
+              </div><div class="form-group">
+                <input type="number" name="student[rollNo]" class="form-control" placeholder="Enter Roll No" formnovalidate="Enter" value="">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="Enter password"name="pass" value="">
+                <input type="password" class="form-control" placeholder="Enter password" name="student[password]" value="">
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-default btn-lg btn-block" name="button" value="Login">Sign Up</button>
