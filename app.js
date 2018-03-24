@@ -181,7 +181,7 @@ app.get("/user/admin/adminRecruited/:id",function(req, res) {
             console.log(err);
         }
         else
-        {  
+        { console.log(Company);  
            res.render("adminRecruited",{company:Company});
         }
     });
@@ -199,6 +199,9 @@ app.post("/user/:username/userEdit",function(req,res){
     firstName       :   req.body.student.firstName,
     midName         :   req.body.student.midName,
     lastName        :   req.body.student.lastName,
+    mobileNo        :   req.body.student.mobileNo,
+    gender          :   req.body.student.gender,
+    dob             :   req.body.student.dob,
     mailId            :   req.body.student.mailId   ,
     state             :   req.body.student.state    ,
     town              :   req.body.student.town   ,
@@ -314,16 +317,19 @@ app.post("/user/:username/userEdit",function(req,res){
 });
 
 app.get("/user/:username/userView",function(req, res) {
-    Student.find({},function(err,userStudent){
+    Student.find({rollNo:req.params.username}).find(function(err,user){
         if(err){
             console.log(err);
         }
         else
-        {   
-            console.log(userStudent);
-        res.render("userView",{student:userStudent});
+        {
+            console.log(user.length);
+            console.log(JSON.stringify(user));
+            res.render("userView",{student:user});
         }
+        
     });
+      
     
 });
 

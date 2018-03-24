@@ -25,33 +25,29 @@ div.row.cgpa{
         <div class="row">
             <div class="col-md-6"><img src="/assets/img/logo_chitkara_black.png" width="200" height="50"></div>
             <div  class="col-md-6">
-                <p style="vertical-align:middle;padding:5px;text-align:right;">Date : _______________</p>
+                <% var d=new Date(); var day=d.getDate();%>
+                <% var month=d.getMonth(); var year=d.getFullYear();%>
+                <p style="vertical-align:middle;padding:5px;text-align:right;">Date : <%=day%>/<%=month%>/<%=year%></p>
             </div>
-            <% var test=student; %>
-            <%= student %>
       <div class="container">
          <div class="row">
-             <%= test.dob%>
              <div class="col-md-12">
                  <h4>Personal Details:</h4></div>
              <div class="col-md-3">
                  <p>Full Name :</p>
-                 <p class="attribvalue"><%= student.firstName %></p>
+                 <p class="attribvalue"><%= student[0].firstName %></p>
              </div>
              <div class="col-md-3">
                  <p>Mobile No :</p>
-                 <p class="attribvalue"><%=student.mobileNo%></p>
-                 
-                 <%=student.mobileNo%>
-                 
+                 <p class="attribvalue"><%=student[0].mobileNo%></p>
              </div>
              <div class="col-md-3">
                  <p>Gender :</p>
-                 <p class="attribvalue">_________________________ </p>
+                 <p class="attribvalue"><%=student[0].gender%></p>
              </div>
              <div class="col-md-3">
                  <p>Date of Birth :</p>
-                 <p class="attribvalue">_________________________ </p>
+                 <p class="attribvalue"><%=student[0].dob%> </p>
              </div>
          </div>
      </div>
@@ -60,7 +56,7 @@ div.row.cgpa{
          <div class="row">
              <div class="col-md-3">
                  <p>E-Mail ID :</p>
-                 <p class="attribvalue">_________________________ </p>
+                 <p class="attribvalue"><%=student[0].mailId%></p>
              </div>
          </div>
      </div>
@@ -75,7 +71,7 @@ div.row.cgpa{
              </div>
              <div class="col-md-3">
                  <p>Pincode :</p>
-                 <p class="attribvalue">_________________________ </p>
+                 <p class="attribvalue"><%=student[0].pinCode%> </p>
              </div>
          </div>
      </div>
@@ -91,18 +87,38 @@ div.row.cgpa{
                                  <th>Type </th>
                                  <th>Board </th>
                                  <th>Year of Passing</th>
+                                 <th>Stream</th>
                                  <th>CGPA.Obt </th>
                                  <th>CGPA.Max </th>
                              </tr>
                          </thead>
                          <tbody>
                              <tr>
-                                 <td>Cell 1</td>
-                                 <td>Cell 2</td>
-                                 <td>Cell 3</td>
-                                 <td>Cell 4</td>
-                                 <td>Cell 5</td>
-                                 <td>Cell 6</td>
+                                 <td><%=student[0].edu10Name%></td>
+                                 <td><%=student[0].edu10Type%></td>
+                                 <td><%=student[0].edu10Board%></td>
+                                 <td><%=student[0].edu10Year%></td>
+                                 <td><%=student[0].edu10Stream%></td>
+                                 <td><%=student[0].edu10CgpaObt%></td>
+                                 <td><%=student[0].edu10CgpaMax%></td>
+                             </tr>
+                                                          <tr>
+                                 <td><%=student[0].edu12Name%></td>
+                                 <td><%=student[0].edu12Type%></td>
+                                 <td><%=student[0].edu12Board%></td>
+                                 <td><%=student[0].edu12Year%></td>
+                                 <td><%=student[0].edu12Stream%></td>
+                                 <td><%=student[0].edu12CgpaObt%></td>
+                                 <td><%=student[0].edu12CgpaMax%></td>
+                             </tr>
+                                                          <tr>
+                                 <td><%=student[0].eduGradName%></td>
+                                 <td><%=student[0].eduGradType%></td>
+                                 <td><%=student[0].eduGradBoard%></td>
+                                 <td><%=student[0].eduGradYear%></td>
+                                 <td><%=student[0].eduGradStream%></td>
+                                 <td><%=student[0].eduGradCgpaObt%></td>
+                                 <td><%=student[0].eduGradCgpaMax%></td>
                              </tr>
                          </tbody>
                      </table>
@@ -115,10 +131,14 @@ div.row.cgpa{
              <div class="col-md-12">
                  <h4>Technical Skills &amp; Projects </h4>
                  <ul>
-                     <li>Item 1</li>
-                     <li>Item 2</li>
-                     <li>Item 3</li>
-                     <li>Item 4</li>
+                     <% var skills=student[0].skillTag; %>
+                     <% var output=skills.split(","); %>
+                     <% output.forEach(function(tags){ %>
+                         <li>
+                             <%=tags%>
+                         </li>
+                     <% }); %>
+
                  </ul>
              </div>
          </div>
