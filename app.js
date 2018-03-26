@@ -15,9 +15,7 @@ mongoose.connect("mongodb://localhost/company");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(methodOverride("_method"));
-
 app.use(express.static("public"));
-
 app.set("view engine","ejs");
 
 var companySchema = new mongoose.Schema({
@@ -65,33 +63,14 @@ var studentSchema = new mongoose.Schema({
                 eduGradBoard:       { type: String, default: "NA" },
                 eduGradStream:      { type: String, default: "NA" },
                 eduGradYear:        { type: String, default: "NA" },
-                eduGradCgpaObt:      { type: String, default: "NA" },
-                eduGradCgpaMax:       { type: String, default: "NA" },
+                eduGradCgpaObt:      { type: Number, default: 0 },
+                eduGradCgpaMax:       { type: Number, default: 0 },
         gitHub:String,
         skillTag:String
 });
 
 var Company = mongoose.model("Company",companySchema);
 var Student = mongoose.model("Student",studentSchema);
-
-// Company.create({
-//     companyName : "armin",
-//     branch : "CSE",
-//     lastDate : "21/12/2017",
-//     QuerlyID : "23@gmail.com", 
-//     projectSkill : "CD",
-//     minCgpa :"34",
-//     typeCompany : "Network"
-    
-// },function(err,company){
-//     if(err){
-//         console.log("Something is wrong");
-//     }
-//     else
-//     {
-//         console.log(company);
-//     }
-// });
 
 
 // ======= ROUTES ==========
@@ -181,8 +160,17 @@ app.get("/user/admin/adminRecruited/:id",function(req, res) {
             console.log(err);
         }
         else
-        { console.log(Company);  
-           res.render("adminRecruited",{company:Company});
+        { 
+            Student.find({},function(err,allStudent){
+            if(err){
+                console.log(err);
+            }
+            else
+            {   console.log(Company);
+                console.log(allStudent);
+                res.render("adminRecruited",{company:Company,student:allStudent});
+            }
+            });
         }
     });
 });
@@ -239,80 +227,6 @@ app.post("/user/:username/userEdit",function(req,res){
         console.log(object);
     })
     
-    // Student.findOneAndUpdate({rollNo:req.params.username},
-    // { $set: { 
-        
-    // "mobileNo"          :   req.body.student.mobileNo ,
-    // "gender"            :   req.body.student.gender ,
-    // "dob"               :   req.body.student.dob    ,
-    // "fatherName"        :   req.body.student.fatherName,
-    // "mailId"            :   req.body.student.mailId   ,
-    // "state"             :   "req.body.student.state"    ,
-    // "town"              :   "req.body.student.town"     ,
-    // "houseNo"           :   "req.body.student.houseNo"  ,
-    // "street"            :   "req.body.student.street"   ,
-    // "pinCode"           :   "req.body.student.pinCode"  ,
-    //     "edu10Name"         :   "req.body.student.edu10Name"    ,
-    //     "edu10Type"         :   "req.body.student.edu10Type"    ,
-    //     "edu10Board"        :   "req.body.student.edu10Board"   ,
-    //     "edu10Stream"       :   "req.body.student.edu10Stream"  ,
-    //     "edu10Year"         :   "req.body.student.edu10Year"    ,
-    //     "edu10CgpaObt"      :   "req.body.student.edu10CgpaObt" ,
-    //     "edu10CgpaMax"      :   "req.body.student.edu10CgpaMax" ,
-    //         "edu12Name"         :   "req.body.student.edu12Name"    ,
-    //         "edu12Type"         :   "req.body.student.edu12Type"    ,
-    //         "edu12Board"        :   "req.body.student.edu12Board"   ,
-    //         "edu12Stream"       :   "req.body.student.edu12Stream"  ,
-    //         "edu12Year"         :   "req.body.student.edu12Year"    ,
-    //         "edu12CgpaObt"      :   "req.body.student.edu12CgpaObt" ,
-    //         "edu12CgpaMax"      :   "req.body.student.edu12CgpaMax" ,
-    //             "eduGradName"   :   "req.body.student.eduGradName"      ,
-    //             "eduGradType"   :   "req.body.student.eduGradType"      ,
-    //             "eduGradBoard"  :   "req.body.student.eduGradBoard"     ,
-    //             "eduGradStream" :   "req.body.student.eduGradStream"    ,
-    //             "eduGradYear"   :   "req.body.student.eduGradYear"      ,
-    //             "eduGradCgpaObt":   "req.body.student.eduGradCgpaObt"   ,
-    //             "eduGradCgpaMax":   "req.body.student.eduGradCgpaMax"   ,
-    //     "gitHub"    : "req.body.student.edu12Name",
-    //     "skillTag"  : "req.body.student.edu12Name"
-    // } },
-    // function(err,object){
-    //     if(err)
-    //     {
-    //         console.log(err);
-    //     }
-    //     else
-    //     console.log(object);
-    // }
-    // );
-
-
-
-//   Student.find({rollNo:req.params.username},function(err,userStudent){
-//         if(err){
-//             console.log(err);
-//         }
-//         else
-//         {   console.log(userStudent._Id+"0000000000000000000");
-//             res.render("userView",{companies:userStudent});
-//         }
-//     });
-    // var url;
-    // Student.create(req.body.student,function(err,newStudent){
-    //     if(err){
-    //         console.log("error created");
-    //     }
-    //     else
-    //     { 
-    //         console.log("DB created");
-    //         console.log(newStudent);
-    //         console.log("()()()()()()()()()"+newStudent._id+"999999999999999999999");
-
-            
-    //         // res.redirect("/user/"+user+"/userEdit");
-    //     }
-    // });
-    // res.redirect("/user/:username/userView");
     res.redirect("/user/"+req.params.username+"/userView");
 });
 
@@ -327,10 +241,7 @@ app.get("/user/:username/userView",function(req, res) {
             console.log(JSON.stringify(user));
             res.render("userView",{student:user});
         }
-        
     });
-      
-    
 });
 
 // ==========================

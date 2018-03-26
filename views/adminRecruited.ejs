@@ -55,6 +55,7 @@ div.row.cgpa{
             </table>
         </div>
     </div>
+    
     <div class="container">
         <div class="table-responsive">
             <table class="table table-bordered">
@@ -63,15 +64,24 @@ div.row.cgpa{
                         <th>Student Name</th>
                         <th>Roll. Number </th>
                         <th>E-Mail ID</th>
+                        <th>CGPA Obt</th>
+                        <th>CGPA Type</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 3</td>
-                    </tr>
-                    <tr></tr>
+                    
+    <% for(var i=0;i<student.length;i++){ %>
+    <%    if(student[i].eduGradCgpaObt>=company.minCgpa){ %>
+    <tr>
+            <td><%=student[i].firstName%> <%=student[i].midName%> <%=student[i].lastName%> </td>
+            <td><%=student[i].rollNo%></td>
+            <td><%=student[i].mailId%></td>
+            <td><%=student[i].eduGradCgpaObt%></td>
+            <td><%=typeof student[i].eduGradCgpaObt%></td>
+                        </tr>
+           <%             } %>
+    <% };                                 %>
+        
                 </tbody>
                 <caption>Students Selected for Recruitment:</caption>
             </table>
