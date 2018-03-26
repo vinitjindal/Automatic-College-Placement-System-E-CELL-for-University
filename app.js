@@ -85,9 +85,6 @@ app.get("/login",function(req, res) {
 app.post("/login",function(req, res) {
   
   res.redirect("user/"+req.body.student.username+"/userEdit");
-//   console.log(req.body.student.pass);
-//   res.redirect("/user/"+username+"/userEdit");
-   
 });
 
 app.get("/signup",function(req, res) {
