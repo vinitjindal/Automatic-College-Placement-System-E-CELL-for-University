@@ -67,7 +67,11 @@ div.row.cgpa{
                  <h4>Address :</h4></div>
              <div class="col-md-3">
                  <p>Permanent Address :</p>
-                 <p class="attribvalue">_________________________ </p>
+                     <address class="attribvalue">
+                      <%=student[0].houseNo%> <%=student[0].town%>
+                      <%=student[0].street%> <%=student[0].state%>
+                      <%=student[0].pinCode%>
+                     </address>
              </div>
              <div class="col-md-3">
                  <p>Pincode :</p>

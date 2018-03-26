@@ -62,32 +62,46 @@ div.row.cgpa{
                 <thead>
                     <tr>
                         <th>Student Name</th>
-                        <th>Roll. Number </th>
+                        <th>Roll Number </th>
                         <th>E-Mail ID</th>
                         <th>CGPA Obt</th>
-                        <th>CGPA Type</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
-    <% for(var i=0;i<student.length;i++){ %>
-    <%    if(student[i].eduGradCgpaObt>=company.minCgpa){ %>
+    <%  var c=company.projectSkill.toLowerCase()%>
+    <%  var count=0                             %>
+    <%  var companySkill=c.split(",")           %>
+    <%  var s                                   %>
+    <%  var studentSkill                        %>
+    <%  student.forEach(function(Student){      %>
+    <%    count=0                               %>
+    <%    if(Student.eduGradCgpaObt>=company.minCgpa){     %>
     <tr>
-            <td><%=student[i].firstName%> <%=student[i].midName%> <%=student[i].lastName%> </td>
-            <td><%=student[i].rollNo%></td>
-            <td><%=student[i].mailId%></td>
-            <td><%=student[i].eduGradCgpaObt%></td>
-            <td><%=typeof student[i].eduGradCgpaObt%></td>
-                        </tr>
-           <%             } %>
-    <% };                                 %>
-        
+         <%       s=Student.skillTag.toLowerCase()         %>
+         <%       studentSkill=s.split(",")                %>
+         <%       companySkill.forEach(function(cSkill){   %>
+         <%         studentSkill.forEach(function(User){   %>
+         <%           if(cSkill==User){ %>
+         <%               count=count+1 %>
+         <%                           } %>
+         <%                                }) %>
+         <%                                }) %>
+           <% if(count==companySkill.length){ %>
+           <tr>
+            <td><%=Student.firstName%> <%=Student.midName%> <%=Student.lastName%></td>   
+            <td><%=Student.rollNo%></td>   
+            <td><%=Student.mailId%></td>   
+            <td><%=Student.eduGradCgpaObt%></td>   
+           </tr>
+            <%                         }     %>
+            <%                             }  %>
+            <% });                            %>
                 </tbody>
                 <caption>Students Selected for Recruitment:</caption>
             </table>
         </div>
     </div>
-    <p class="text-uppercase text-right author">Authorized SIgnatory</p>
+    <p class="text-uppercase text-right author">Authorized Signatory</p>
     </div>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
