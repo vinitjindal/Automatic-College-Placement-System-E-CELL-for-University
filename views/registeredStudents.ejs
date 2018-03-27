@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Student Registered</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/styles_form.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/yahoo/pure-release/v0.6.0/pure-min.css">
+    <link rel="stylesheet" href="/assets/css/jquery.tag-editor.css">
+<style media="screen">
+  div.container.formnav{
+    margin-top: 50px;
+  }
+  div.upload{
+    margin-bottom: 30px;
+  }
+div.container.formnav{
+  margin-top: 50px;
+}
+table.table {
+  font-size: 12px;
+}
+button.viewButton{
+  font-size: 1.4em;
+  border: none;
+  background-color: transparent;
+}
+button.viewButton:hover{
+  color: #e74c3c;
+}
+
+</style>
+
+</head>
+<body>
+    <div class="container formnav">
+        <ul class="nav nav-pills">
+            <li ><a href="/user/admin">Create Recruiter Profile</a></li>
+            <li ><a href="/user/admin/adminView">View Recruiters Profile</a></li>
+            <li class="active"><a href="/user/admin/registeredStudents">Registered Students</a></li>
+            <li class="navbar-right dropdown-toggle" id="dropdownMenu1">
+               <a href="#">
+                 Username<i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
+              <!-- <div class="dropdown">
+  <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <a href="#"><i class="fa fa-user item">Username</i></a>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Sign Out</a></li>
+  </ul>
+</div> -->
+            </li>
+        </ul>
+        <br>
+        <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Click on View button to See more Details</div>
+
+  <!-- Table -->
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Student Name</td>
+        <td>Student Roll No.</td>
+        <td>View</td>
+        <td>Delete</td>
+        <tbody>
+          <% student.forEach(function(Student){ %>
+          <tr>
+          <td><%= Student.firstName %> <%= Student.midName %> <%= Student.lastName %></td>
+          <td><%= Student.rollNo %></td>          
+          <td><form action="/user/<%=Student.rollNo%>/userView" method="POST"><button class="viewButton" type="submit" value="<%=Student._id %>" name="view"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></i></button></form></td>
+          <td><form action="/user/admin/registeredStudents/<%=Student._id%>?_method=DELETE" method="POST"><button class="viewButton" type="submit" value="<%=Student._id %>"name="delete"><i class="fa fa-times" aria-hidden="true"></i></button></form></td>
+            </tr>
+            <% });%>
+        </tbody>
+      </tr>
+    </thead>
+  </table>
+</div>
+    </div>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
