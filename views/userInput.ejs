@@ -60,7 +60,7 @@ button.viewButton:hover{
             <li class="active"><a href="#">Edit Details</a></li>
             <li><a href="userView">View Application</a></li>
             <li class="navbar-right"><a href="#">
-              Username<i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
+              <%=prefiled[0].firstName%> <%=prefiled[0].midName%> <%=prefiled[0].lastName%><i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
               <!-- <div class="dropup">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Dropup
@@ -88,13 +88,13 @@ button.viewButton:hover{
             <h4>Personal Details</h4>
             <div class="row">
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[firstName]" placeholder="First Name" required>
+                    <input class="form-control" type="text" name="student[firstName]" value="<%=prefiled[0].firstName%>" disabled placeholder="First Name" required>
                 </div>
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[midName]" placeholder="Middle Name">
+                    <input class="form-control" type="text" name="student[midName]" value="<%=prefiled[0].midName%>" disabled placeholder="Middle Name">
                 </div>
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[lastName]" placeholder="Last Name" required>
+                    <input class="form-control" type="text" name="student[lastName]" value="<%=prefiled[0].lastName%>" disabled placeholder="Last Name" required>
                 </div>
             </div>
             <div class="row">

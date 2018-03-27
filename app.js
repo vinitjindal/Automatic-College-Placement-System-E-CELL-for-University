@@ -173,8 +173,18 @@ app.get("/user/admin/adminRecruited/:id",function(req, res) {
 });
 
 app.get("/user/:username/userEdit",function(req,res){
+    Student.find({rollNo:req.params.username}).find(function(err,user){
+        if(err){
+            console.log(err);
+        }
+        else
+        {
+            console.log(user.length);
+            console.log(JSON.stringify(user));
+    res.render("userInput",{rollno:req.params.username,prefiled:user});
+        }
+    });
     
-    res.render("userInput",{rollno:req.params.username});
 });
 
 
