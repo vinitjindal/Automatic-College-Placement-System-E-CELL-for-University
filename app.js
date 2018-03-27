@@ -191,9 +191,7 @@ app.get("/user/:username/userEdit",function(req,res){
 
 app.post("/user/:username/userEdit",function(req,res){
     Student.update({rollNo:req.params.username},{
-    firstName       :   req.body.student.firstName,
-    midName         :   req.body.student.midName,
-    lastName        :   req.body.student.lastName,
+
     mobileNo        :   req.body.student.mobileNo,
     gender          :   req.body.student.gender,
     dob             :   req.body.student.dob,
