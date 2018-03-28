@@ -136,6 +136,51 @@ app.get("/user/admin/adminView",function(req, res) {
         }
     });
 });
+
+app.get("/user/admin/registeredStudents/",function(req, res) {
+    //Get all Company From Database
+    Student.find({},function(err,allStudent){
+        if(err){
+            console.log(err);
+        }
+        else
+        {   
+            res.render("registeredStudents",{student:allStudent});
+        }
+    });
+});
+
+app.delete("/user/admin/registeredStudents/:id",function(req, res) {
+    Student.findByIdAndRemove(req.params.id,function(err){
+        if(err)
+        {
+        console.log(err);    
+        }
+        else
+        {   console.log("Deleted array");
+            res.redirect("/user/admin/registeredStudents/");
+        }
+        
+    });
+});
+
+app.post("/user/admin/registeredStudents/view/:id",function(req, res) {
+    
+    Student.findById(req.params.id,function(err,selectedStudent){
+        if(err){
+            console.log(err);
+        }
+        else
+        { console.log(selectedStudent);
+            res.render("adminStudentView",{student:selectedStudent});
+                }
+    });
+});
+
+
+
+
+
 app.delete("/user/admin/adminView/:id",function(req, res) {
     Company.findByIdAndRemove(req.params.id,function(err){
         if(err)

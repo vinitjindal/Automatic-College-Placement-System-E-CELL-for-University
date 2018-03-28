@@ -35,19 +35,19 @@ div.row.cgpa{
                  <h4>Personal Details:</h4></div>
              <div class="col-md-3">
                  <p>Full Name :</p>
-                 <p class="attribvalue"><%= student[0].firstName %> <%= student[0].midName %> <%= student[0].lastName %></p>
+                 <p class="attribvalue"><%= student.firstName %> <%= student.midName %> <%= student.lastName %></p>
              </div>
              <div class="col-md-3">
                  <p>Mobile No :</p>
-                 <p class="attribvalue"><%=student[0].mobileNo%></p>
+                 <p class="attribvalue"><%=student.mobileNo%></p>
              </div>
              <div class="col-md-3">
                  <p>Gender :</p>
-                 <p class="attribvalue"><%=student[0].gender%></p>
+                 <p class="attribvalue"><%=student.gender%></p>
              </div>
              <div class="col-md-3">
                  <p>Date of Birth :</p>
-                 <p class="attribvalue"><%=student[0].dob%> </p>
+                 <p class="attribvalue"><%=student.dob%> </p>
              </div>
          </div>
      </div>
@@ -56,7 +56,7 @@ div.row.cgpa{
          <div class="row">
              <div class="col-md-3">
                  <p>E-Mail ID :</p>
-                 <p class="attribvalue"><%=student[0].mailId%></p>
+                 <p class="attribvalue"><%=student.mailId%></p>
              </div>
          </div>
      </div>
@@ -68,18 +68,14 @@ div.row.cgpa{
              <div class="col-md-3">
                  <p>Permanent Address :</p>
                      <address class="attribvalue">
-                      <%=student[0].houseNo%> <%=student[0].town%>
-                      <%=student[0].street%> <%=student[0].state%>
-                      <%=student[0].pinCode%>
+                      <%=student.houseNo%> <%=student.town%>
+                      <%=student.street%> <%=student.state%>
+                      <%=student.pinCode%>
                      </address>
              </div>
              <div class="col-md-3">
                  <p>Pincode :</p>
-                 <p class="attribvalue"><%=student[0].pinCode%> </p>
-             </div>
-             <div class="col-md-3">
-                 <p>Git-Hub Link :</p>
-                 <p class="attribvalue"><%=student[0].gitHub%> </p>
+                 <p class="attribvalue"><%=student.pinCode%> </p>
              </div>
          </div>
      </div>
@@ -102,31 +98,31 @@ div.row.cgpa{
                          </thead>
                          <tbody>
                              <tr>
-                                 <td><%=student[0].edu10Name%></td>
-                                 <td><%=student[0].edu10Type%></td>
-                                 <td><%=student[0].edu10Board%></td>
-                                 <td><%=student[0].edu10Year%></td>
-                                 <td><%=student[0].edu10Stream%></td>
-                                 <td><%=student[0].edu10CgpaObt%></td>
-                                 <td><%=student[0].edu10CgpaMax%></td>
+                                 <td><%=student.edu10Name%></td>
+                                 <td><%=student.edu10Type%></td>
+                                 <td><%=student.edu10Board%></td>
+                                 <td><%=student.edu10Year%></td>
+                                 <td><%=student.edu10Stream%></td>
+                                 <td><%=student.edu10CgpaObt%></td>
+                                 <td><%=student.edu10CgpaMax%></td>
                              </tr>
                                                           <tr>
-                                 <td><%=student[0].edu12Name%></td>
-                                 <td><%=student[0].edu12Type%></td>
-                                 <td><%=student[0].edu12Board%></td>
-                                 <td><%=student[0].edu12Year%></td>
-                                 <td><%=student[0].edu12Stream%></td>
-                                 <td><%=student[0].edu12CgpaObt%></td>
-                                 <td><%=student[0].edu12CgpaMax%></td>
+                                 <td><%=student.edu12Name%></td>
+                                 <td><%=student.edu12Type%></td>
+                                 <td><%=student.edu12Board%></td>
+                                 <td><%=student.edu12Year%></td>
+                                 <td><%=student.edu12Stream%></td>
+                                 <td><%=student.edu12CgpaObt%></td>
+                                 <td><%=student.edu12CgpaMax%></td>
                              </tr>
                                                           <tr>
-                                 <td><%=student[0].eduGradName%></td>
-                                 <td><%=student[0].eduGradType%></td>
-                                 <td><%=student[0].eduGradBoard%></td>
-                                 <td><%=student[0].eduGradYear%></td>
-                                 <td><%=student[0].eduGradStream%></td>
-                                 <td><%=student[0].eduGradCgpaObt%></td>
-                                 <td><%=student[0].eduGradCgpaMax%></td>
+                                 <td><%=student.eduGradName%></td>
+                                 <td><%=student.eduGradType%></td>
+                                 <td><%=student.eduGradBoard%></td>
+                                 <td><%=student.eduGradYear%></td>
+                                 <td><%=student.eduGradStream%></td>
+                                 <td><%=student.eduGradCgpaObt%></td>
+                                 <td><%=student.eduGradCgpaMax%></td>
                              </tr>
                          </tbody>
                      </table>
@@ -139,7 +135,7 @@ div.row.cgpa{
              <div class="col-md-12">
                  <h4>Technical Skills &amp; Projects </h4>
                  <ul>
-                     <% var skills=student[0].skillTag; %>
+                     <% var skills=student.skillTag; %>
                      <% var output=skills.split(","); %>
                      <% output.forEach(function(tags){ %>
                          <li>
