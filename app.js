@@ -7,9 +7,10 @@ var express         =   require("express"),
     bodyParser      =   require("body-parser"),
     mongoose        =   require("mongoose"),
     ejs             =   require("ejs"),
-    methodOverride  =   require("method-override");
+    methodOverride  =   require("method-override"),
+    Company         =   require("./models/company"),
+    Student         =   require("./models/students");
     
- 
 
 mongoose.connect("mongodb://localhost/company");
 app.use(bodyParser.urlencoded({extended:true}));
@@ -17,60 +18,6 @@ app.set("view engine","ejs");
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.set("view engine","ejs");
-
-var companySchema = new mongoose.Schema({
-    companyName:String,
-    branch:String,
-    lastDate:String,
-    QuerlyID:String,
-    projectSkill:String,
-    minCgpa:Number,
-    typeCompany:String
-});
-
-var studentSchema = new mongoose.Schema({
-    rollNo:     { type: Number, default: 0 },
-    password:   { type: String, default: "NA" },
-    firstName:  { type: String, default: "NA" },
-    midName:    { type: String, default: "NA" },
-    lastName:   { type: String, default: "NA" },
-    mobileNo:   { type: String, default: "NA" }, 
-    gender:     { type: String, default: "NA" },
-    dob:        { type: String, default: "NA" },
-    fatherName: { type: String, default: "NA" },
-    mailId:     { type: String, default: "NA" },
-    state:      { type: String, default: "NA" },
-    town:       { type: String, default: "NA" },
-    houseNo:    { type: String, default: "NA" },
-    street:     { type: String, default: "NA" },
-    pinCode:    { type: String, default: "NA" },
-        edu10Name:      { type: String, default: "NA" },
-        edu10Type:      { type: String, default: "NA" },
-        edu10Board:     { type: String, default: "NA" },
-        edu10Stream:    { type: String, default: "NA" },
-        edu10Year:      { type: String, default: "NA" },
-        edu10CgpaObt:           { type: String, default: "NA" },
-        edu10CgpaMax:           { type: String, default: "NA" },
-            edu12Name:              { type: String, default: "NA" },
-            edu12Type:              { type: String, default: "NA" },
-            edu12Board:             { type: String, default: "NA" },
-            edu12Stream:            { type: String, default: "NA" },
-            edu12Year:              { type: String, default: "NA" },
-            edu12CgpaObt:           { type: String, default: "NA" },
-            edu12CgpaMax:           { type: String, default: "NA" },
-                eduGradName:        { type: String, default: "NA" },
-                eduGradType:        { type: String, default: "NA" },
-                eduGradBoard:       { type: String, default: "NA" },
-                eduGradStream:      { type: String, default: "NA" },
-                eduGradYear:        { type: String, default: "NA" },
-                eduGradCgpaObt:      { type: Number, default: 0 },
-                eduGradCgpaMax:       { type: Number, default: 0 },
-        gitHub:String,
-        skillTag:String
-});
-
-var Company = mongoose.model("Company",companySchema);
-var Student = mongoose.model("Student",studentSchema);
 
 
 // ======= ROUTES ==========

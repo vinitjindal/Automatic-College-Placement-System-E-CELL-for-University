@@ -79,7 +79,7 @@ div.row.cgpa{
              </div>
                       <div class="col-md-3">
                  <p>Git-Hub Link :</p>
-                 <p class="attribvalue"><%=student[0].gitHub%> </p>
+                 <p class="attribvalue"><%=student.gitHub%> </p>
              </div>
          </div>
      </div>
@@ -139,14 +139,14 @@ div.row.cgpa{
              <div class="col-md-12">
                  <h4>Technical Skills &amp; Projects </h4>
                  <ul>
+                    <%if(student.skillTag){ %>
                      <% var skills=student.skillTag; %>
                      <% var output=skills.split(","); %>
                      <% output.forEach(function(tags){ %>
                          <li>
                              <%=tags%>
                          </li>
-                     <% }); %>
-
+                     <% });} %>
                  </ul>
              </div>
          </div>

@@ -139,13 +139,14 @@ div.row.cgpa{
              <div class="col-md-12">
                  <h4>Technical Skills &amp; Projects </h4>
                  <ul>
+                     <%if(student[0].skillTag){ %>
                      <% var skills=student[0].skillTag; %>
                      <% var output=skills.split(","); %>
                      <% output.forEach(function(tags){ %>
                          <li>
                              <%=tags%>
                          </li>
-                     <% }); %>
+                     <% });} %>
 
                  </ul>
              </div>
