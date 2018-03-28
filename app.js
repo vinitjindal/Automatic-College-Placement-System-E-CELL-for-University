@@ -2,14 +2,18 @@
 // Declarations
 // ================
 
-var express         =   require("express"),
-    app             =   express(),
-    bodyParser      =   require("body-parser"),
-    mongoose        =   require("mongoose"),
-    ejs             =   require("ejs"),
-    methodOverride  =   require("method-override"),
-    Company         =   require("./models/company"),
-    Student         =   require("./models/students");
+var express                 =   require("express"),
+    app                     =   express(),
+    passport                =   require("passport"),
+    bodyParser              =   require("body-parser"),
+    LocalStrategy           =   require("passport-local"),
+    passportLocalMongoose   =   require("passport-local-mongoose"),
+    mongoose                =   require("mongoose"),
+    ejs                     =   require("ejs"),
+    methodOverride          =   require("method-override"),
+    Company                 =   require("./models/company"),
+    Student                 =   require("./models/students");
+    
     
 
 mongoose.connect("mongodb://localhost/company");
