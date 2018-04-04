@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FormDesign</title>
+    <title>Enter your Details</title>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/styles_form.css">
@@ -59,8 +59,8 @@ button.viewButton:hover{
         <ul class="nav nav-pills">
             <li class="active"><a href="#">Edit Details</a></li>
             <li><a href="userView">View Application</a></li>
-            <li class="navbar-right"><a href="#">
-              <%=prefiled[0].firstName%> <%=prefiled[0].midName%> <%=prefiled[0].lastName%><i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
+            <li class="navbar-right"><a href="/logout">Sign Out
+              <i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
               <!-- <div class="dropup">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Dropup
@@ -80,21 +80,22 @@ button.viewButton:hover{
         </ul>
         <br>
         <form method="POST" >
+                        <h4>Roll No:</h4>
             <div class="row">
             <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[rollNo]" disabled value="<%=rollno%>" placeholder="First Name">
+                    <input class="form-control" type="number" name="student[rollNo]"  value="<%=rollno%>" placeholder="First Name"disabled>
                 </div>
                 </div>
             <h4>Personal Details</h4>
             <div class="row">
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[firstName]" value="<%=prefiled[0].firstName%>" disabled placeholder="First Name" required>
+                    <input class="form-control" type="text" name="student[firstName]"  placeholder="First Name" required>
                 </div>
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[midName]" value="<%=prefiled[0].midName%>" disabled placeholder="Middle Name">
+                    <input class="form-control" type="text" name="student[midName]"  placeholder="Middle Name">
                 </div>
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[lastName]" value="<%=prefiled[0].lastName%>" disabled placeholder="Last Name" required>
+                    <input class="form-control" type="text" name="student[lastName]" placeholder="Last Name" required>
                 </div>
             </div>
             <div class="row">

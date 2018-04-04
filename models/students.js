@@ -1,8 +1,10 @@
 var mongoose    =   require("mongoose");
+var passportLocalMongoose   =   require("passport-local-mongoose");
 
 var studentSchema = new mongoose.Schema({
-    rollNo:     { type: Number, default: 0 },
-    password:   { type: String, default: "NA" },
+    username:   { type: Number},
+    rollNo  :   {type:Number},
+    password:   { type: String},
     firstName:  { type: String, default: "NA" },
     midName:    { type: String, default: "NA" },
     lastName:   { type: String, default: "NA" },
@@ -41,5 +43,6 @@ var studentSchema = new mongoose.Schema({
         skillTag:String
 });
 
+studentSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("Student",studentSchema);

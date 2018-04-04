@@ -42,8 +42,8 @@ button.viewButton:hover{
             <li ><a href="/user/admin/adminView">View Recruiters Profile</a></li>
             <li class="active"><a href="/user/admin/registeredStudents">Registered Students</a></li>
             <li class="navbar-right dropdown-toggle" id="dropdownMenu1">
-               <a href="#">
-                 Username<i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
+               <a href="/logout">
+                 Sign out<i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
               <!-- <div class="dropdown">
   <button class="btn  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     <a href="#"><i class="fa fa-user item">Username</i></a>
@@ -71,10 +71,12 @@ button.viewButton:hover{
         <tbody>
           <% student.forEach(function(Student){ %>
           <tr>
+          <%   if(student.rollNo!="1234567890"){  %>
           <td><%= Student.firstName %> <%= Student.midName %> <%= Student.lastName %></td>
           <td><%= Student.rollNo %></td>          
           <td><form action="/user/admin/registeredStudents/view/<%=Student._id%>" method="POST"><button class="viewButton" type="submit" value="<%=Student._id %>" name="view"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></i></button></form></td>
           <td><form action="/user/admin/registeredStudents/<%=Student._id%>?_method=DELETE" method="POST"><button class="viewButton" type="submit" value="<%=Student._id %>"name="delete"><i class="fa fa-times" aria-hidden="true"></i></button></form></td>
+          <%   }  %>
             </tr>
             <% });%>
         </tbody>

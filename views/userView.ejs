@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Details</title>
+    <title>Viewing Student Details</title>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <style media="screen">
     p.text-uppercase.text-right.author{
@@ -26,7 +26,7 @@ div.row.cgpa{
             <div class="col-md-6"><img src="/assets/img/logo_chitkara_black.png" width="200" height="50"></div>
             <div  class="col-md-6">
                 <% var d=new Date(); var day=d.getDate();%>
-                <% var month=d.getMonth(); var year=d.getFullYear();%>
+                <% var month=d.getMonth()+1; var year=d.getFullYear();%>
                 <p style="vertical-align:middle;padding:5px;text-align:right;">Date : <%=day%>/<%=month%>/<%=year%></p>
             </div>
       <div class="container">

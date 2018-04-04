@@ -4,15 +4,16 @@
 
 var express                 =   require("express"),
     app                     =   express(),
-    passport                =   require("passport"),
     bodyParser              =   require("body-parser"),
+    mongoose                =   require("mongoose"),
+    passport                =   require("passport"),
     LocalStrategy           =   require("passport-local"),
     passportLocalMongoose   =   require("passport-local-mongoose"),
-    mongoose                =   require("mongoose"),
     ejs                     =   require("ejs"),
     methodOverride          =   require("method-override"),
     Company                 =   require("./models/company"),
-    Student                 =   require("./models/students");
+    Student                 =   require("./models/students"),
+    User                    =   require("./models/user");
     
     
 
@@ -21,46 +22,89 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
-app.set("view engine","ejs");
 
+//PASSPORT CONFIGURATION
 
-// ======= ROUTES ==========
+app.use(require("express-session")({
+    secret  :   "This is the encoded Key ",
+    resave  :   false,
+    saveUninitialized   :   false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(Student.authenticate()));
+passport.serializeUser(Student.serializeUser());
+passport.deserializeUser(Student.deserializeUser());
+
 app.get("/",function(req,res){
     res.render("index");
 });
 
+var user;
+// ======== AUTH ROUTES ===========
 app.get("/login",function(req, res) {
     res.render("login");
 });
 
-app.post("/login",function(req, res) {
+
+
+
+// app.post("/login",function(req, res) {
   
-  res.redirect("user/"+req.body.student.username+"/userEdit");
-});
+//   res.redirect("user/"+req.body.student.username+"/userEdit");
+// });
 
 app.get("/signup",function(req, res) {
     res.render("signup");
 });
 
 app.post("/signup",function(req, res) {
-    Student.create(req.body.student,function(err,newStudent){
+    console.log(typeof req.body.username);
+    user=req.body.username;
+    var newUser =   new Student({username: req.body.username});
+    Student.register(newUser,req.body.password,function(err,user){
         if(err){
             console.log(err);
+            return res.render("signup");
         }
-        else
-        {
-            console.log("DB created");
-            console.log(newStudent);
-        }
+        passport.authenticate("local")(req,res,function(){
+                res.redirect("/login");      
+        });
     });
-    res.redirect("/login");
+    
+    // Student.create(req.body.student,function(err,newStudent){
+    //     if(err){
+    //         console.log(err);
+    //     }
+    //     else
+    //     {
+    //         console.log("DB created");
+    //         console.log(newStudent);
+    //     }
+    // });
+    // res.redirect("/login");
 });
 
-app.get("/user/admin",function(req, res) {
+app.post("/login",passport.authenticate("local",{
+    failureRedirect:"/login"
+}),function(req,res){
+    if(req.body.username==1234567890){
+    res.redirect("user/admin");    
+    }
+    else
+    {
+    res.redirect("user/"+req.body.username+"/userEdit");    
+    }
+});
+
+
+// ======= ROUTES ==========
+app.get("/user/admin",isLoggedIn,function(req, res) {
     res.render("admin");
 });
 
-app.post("/user/admin",function(req, res) {
+app.post("/user/admin",isLoggedIn,function(req, res) {
     //Get data from form & Save it to DB ;
     Company.create(req.body.company,function(err,newCompany){
         if(err){
@@ -75,7 +119,7 @@ app.post("/user/admin",function(req, res) {
     res.redirect("/user/admin/adminView");
 });
 
-app.get("/user/admin/adminView",function(req, res) {
+app.get("/user/admin/adminView",isLoggedIn,function(req, res) {
     //Get all Company From Database
     Company.find({},function(err,allCompany){
         if(err){
@@ -88,7 +132,7 @@ app.get("/user/admin/adminView",function(req, res) {
     });
 });
 
-app.get("/user/admin/registeredStudents/",function(req, res) {
+app.get("/user/admin/registeredStudents/",isLoggedIn,function(req, res) {
     //Get all Company From Database
     Student.find({},function(err,allStudent){
         if(err){
@@ -101,7 +145,7 @@ app.get("/user/admin/registeredStudents/",function(req, res) {
     });
 });
 
-app.delete("/user/admin/registeredStudents/:id",function(req, res) {
+app.delete("/user/admin/registeredStudents/:id",isLoggedIn,function(req, res) {
     Student.findByIdAndRemove(req.params.id,function(err){
         if(err)
         {
@@ -115,7 +159,7 @@ app.delete("/user/admin/registeredStudents/:id",function(req, res) {
     });
 });
 
-app.post("/user/admin/registeredStudents/view/:id",function(req, res) {
+app.post("/user/admin/registeredStudents/view/:id",isLoggedIn,function(req, res) {
     
     Student.findById(req.params.id,function(err,selectedStudent){
         if(err){
@@ -132,7 +176,7 @@ app.post("/user/admin/registeredStudents/view/:id",function(req, res) {
 
 
 
-app.delete("/user/admin/adminView/:id",function(req, res) {
+app.delete("/user/admin/adminView/:id",isLoggedIn,function(req, res) {
     Company.findByIdAndRemove(req.params.id,function(err){
         if(err)
         {
@@ -146,7 +190,7 @@ app.delete("/user/admin/adminView/:id",function(req, res) {
     });
 });
 
-app.get("/user/admin/adminRecruited/:id",function(req, res) {
+app.get("/user/admin/adminRecruited/:id",isLoggedIn,function(req, res) {
     
     Company.findById(req.params.id,function(err,Company){
         if(err){
@@ -168,7 +212,7 @@ app.get("/user/admin/adminRecruited/:id",function(req, res) {
     });
 });
 
-app.get("/user/:username/userEdit",function(req,res){
+app.get("/user/:username/userEdit",isLoggedIn,function(req,res){
     Student.find({rollNo:req.params.username}).find(function(err,user){
         if(err){
             console.log(err);
@@ -177,7 +221,7 @@ app.get("/user/:username/userEdit",function(req,res){
         {
             console.log(user.length);
             console.log(JSON.stringify(user));
-    res.render("userInput",{rollno:req.params.username,prefiled:user});
+    res.render("userInput",{rollno:req.params.username});
         }
     });
     
@@ -185,9 +229,12 @@ app.get("/user/:username/userEdit",function(req,res){
 
 
 
-app.post("/user/:username/userEdit",function(req,res){
-    Student.update({rollNo:req.params.username},{
-
+app.post("/user/:username/userEdit",isLoggedIn,function(req,res){
+    Student.update({username:req.params.username},{
+    rollNo          :   req.params.username,    
+    firstName       :   req.body.student.firstName,
+    midName       :   req.body.student.midName,
+    lastName       :   req.body.student.lastName,
     mobileNo        :   req.body.student.mobileNo,
     gender          :   req.body.student.gender,
     dob             :   req.body.student.dob,
@@ -231,8 +278,8 @@ app.post("/user/:username/userEdit",function(req,res){
     res.redirect("/user/"+req.params.username+"/userView");
 });
 
-app.get("/user/:username/userView",function(req, res) {
-    Student.find({rollNo:req.params.username}).find(function(err,user){
+app.get("/user/:username/userView",isLoggedIn,function(req, res) {
+    Student.find({username:req.params.username}).find(function(err,user){
         if(err){
             console.log(err);
         }
@@ -244,6 +291,18 @@ app.get("/user/:username/userView",function(req, res) {
         }
     });
 });
+
+app.get("/logout",function(req, res) {
+    req.logout();
+    res.redirect("/");
+});
+
+function isLoggedIn(req,res,next) {
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 // ==========================
 

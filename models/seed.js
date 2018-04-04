@@ -21,7 +21,7 @@ Student.remove({},function(err){
     {
         console.log("Student Database Removed");
     }
-            });
+          });
     
 }
 module.exports = seedDB();
