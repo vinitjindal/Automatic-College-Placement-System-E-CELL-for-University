@@ -23,7 +23,9 @@ app.set("view engine","ejs");
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
 
+//======================
 //PASSPORT CONFIGURATION
+//======================
 
 app.use(require("express-session")({
     secret  :   "This is the encoded Key ",
@@ -41,14 +43,13 @@ app.get("/",function(req,res){
     res.render("index");
 });
 
-var user;
+// ================================
 // ======== AUTH ROUTES ===========
+// ================================
+
 app.get("/login",function(req, res) {
     res.render("login");
 });
-
-
-
 
 // app.post("/login",function(req, res) {
   
@@ -61,7 +62,6 @@ app.get("/signup",function(req, res) {
 
 app.post("/signup",function(req, res) {
     console.log(typeof req.body.username);
-    user=req.body.username;
     var newUser =   new Student({username: req.body.username});
     Student.register(newUser,req.body.password,function(err,user){
         if(err){
@@ -86,9 +86,12 @@ app.post("/signup",function(req, res) {
     // res.redirect("/login");
 });
 
+
+var userLogged;
 app.post("/login",passport.authenticate("local",{
     failureRedirect:"/login"
 }),function(req,res){
+    userLogged=req.body.username;
     if(req.body.username==1234567890){
     res.redirect("user/admin");    
     }
@@ -97,9 +100,12 @@ app.post("/login",passport.authenticate("local",{
     res.redirect("user/"+req.body.username+"/userEdit");    
     }
 });
+//================================
+//================================
 
-
-// ======= ROUTES ==========
+// ==============================
+// ======= ROUTES ===============
+// ==============================
 app.get("/user/admin",isLoggedIn,function(req, res) {
     res.render("admin");
 });
@@ -213,6 +219,7 @@ app.get("/user/admin/adminRecruited/:id",isLoggedIn,function(req, res) {
 });
 
 app.get("/user/:username/userEdit",isLoggedIn,function(req,res){
+    if(userLogged==req.params.username){
     Student.find({rollNo:req.params.username}).find(function(err,user){
         if(err){
             console.log(err);
@@ -223,8 +230,12 @@ app.get("/user/:username/userEdit",isLoggedIn,function(req,res){
             console.log(JSON.stringify(user));
     res.render("userInput",{rollno:req.params.username});
         }
-    });
-    
+    });    
+    }
+    else
+    {
+        res.redirect("/logout");
+    }
 });
 
 
@@ -305,7 +316,7 @@ function isLoggedIn(req,res,next) {
 }
 
 // ==========================
-
+// ==========================
 
 // Listening the PORT And IP Output 
 app.listen(process.env.PORT,process.env.IP,function(){

@@ -31,15 +31,20 @@ div.row.cgpa{
             </div>
       <div class="container">
          <div class="row">
+          
              <div class="col-md-12">
                  <h4>Personal Details:</h4></div>
+                    <div class="col-md-3">
+                 <p>Roll No :</p>
+                 <p class="attribvalue"><%=student[0].rollNo%></p>
+             </div>
              <div class="col-md-3">
                  <p>Full Name :</p>
                  <p class="attribvalue"><%= student[0].firstName %> <%= student[0].midName %> <%= student[0].lastName %></p>
              </div>
              <div class="col-md-3">
                  <p>Mobile No :</p>
-                 <p class="attribvalue"><%=student[0].mobileNo%></p>
+                 <p class="attribvalue">+91 <%=student[0].mobileNo%></p>
              </div>
              <div class="col-md-3">
                  <p>Gender :</p>
