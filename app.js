@@ -17,7 +17,10 @@ var express                 =   require("express"),
     
     
 
-mongoose.connect("mongodb://localhost/company");
+//mongoose.connect("mongodb://localhost/company");
+mongoose.connect("mongodb://<stacksapien>:<1234567890>@ds233739.mlab.com:33739/e_cell_chitkara_university");
+
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(methodOverride("_method"));
