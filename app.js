@@ -3,6 +3,7 @@
 // ================
 
 var express                 =   require("express"),
+    multer                  =   require("multer"),
     app                     =   express(),
     bodyParser              =   require("body-parser"),
     mongoose                =   require("mongoose"),
@@ -24,6 +25,47 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
+
+//MULTER CONFIG: to get file photos to temp server storage
+  const multerConfig = {
+
+    //specify diskStorage (another option is memory)
+    storage: multer.diskStorage({
+
+      //specify destination
+      destination: function(req, file, next){
+        next(null, './public/photo-storage');
+      },
+
+      //specify the filename to be unique
+      filename: function(req, file, next){
+        console.log(file);
+        //get the file mimetype ie 'application/pdf' split and prefer the second value ie'pdf'
+        const ext = file.mimetype.split('/')[1];
+        //set the file fieldname to a unique name containing the original name, current datetime and the extension.
+        next(null, userLogged + '.'+ext);
+      }
+    }),
+      // filter out and prevent non-image files.
+    fileFilter: function(req, file, next){
+          if(!file){
+            next();
+          }
+
+        // only permit image mimetypes
+        const pdf = file.mimetype.startsWith('application/');
+        if(pdf){
+          console.log('pdf uploaded');
+          next(null, true);
+        }else{
+          console.log("file not supported")
+          //TODO:  A better message response to user on failure.
+          return next();
+        }
+    }
+  };
+
+
 
 //======================
 //PASSPORT CONFIGURATION
@@ -252,7 +294,7 @@ app.get("/user/:username/userEdit",isLoggedIn,function(req,res){
 
 
 
-app.post("/user/:username/userEdit",isLoggedIn,function(req,res){
+app.post("/user/:username/userEdit",isLoggedIn,multer(multerConfig).single('doc'),function(req,res){
     Student.update({username:req.params.username},{
     rollNo          :   req.params.username,    
     firstName       :   req.body.student.firstName,
