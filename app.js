@@ -16,6 +16,7 @@ var express                 =   require("express"),
     Student                 =   require("./models/students"),
     User                    =   require("./models/user");
     
+    var fs = require('fs');
     
 mongoose.connect("mongodb://stacksapien:stacksapien@ds233739.mlab.com:33739/e_cell_chitkara_university");
 
@@ -205,7 +206,8 @@ app.get("/user/admin/registeredStudents/",isLoggedIn,function(req, res) {
     });
 });
 
-app.delete("/user/admin/registeredStudents/:id",isLoggedIn,function(req, res) {
+app.delete("/user/admin/registeredStudents/:id/:rollNo",isLoggedIn,function(req, res) {
+    
     Student.findByIdAndRemove(req.params.id,function(err){
         if(err)
         {
@@ -213,6 +215,13 @@ app.delete("/user/admin/registeredStudents/:id",isLoggedIn,function(req, res) {
         }
         else
         {   console.log("Deleted array");
+        var path="public/photo-storage/"+req.params.rollNo+".pdf";
+             fs.unlink(path, function(error) {
+                if (error) {
+                throw error;
+                            }
+                    console.log('Deleted ' + req.params.rollNo + ".pdf");
+                                            });
             res.redirect("/user/admin/registeredStudents/");
         }
         
@@ -355,6 +364,13 @@ app.get("/user/:username/userView",isLoggedIn,function(req, res) {
             res.render("userView",{student:user});
         }
     });
+});
+
+app.get('/photo-storage/:id', function (req, res, next) {
+    var filePath = "/photo-storage/"; // Or format the path using the `id` rest param
+    var fileName = req.params.id+".pdf"; // The default name the browser will use
+
+    res.download(filePath, fileName);    
 });
 
 app.get("/logout",function(req, res) {

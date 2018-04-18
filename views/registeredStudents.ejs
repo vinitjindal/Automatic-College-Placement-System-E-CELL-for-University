@@ -69,21 +69,22 @@ button.viewButton:hover{
         <td>Certificates</td>
         <td>View</td>
         <td>Delete</td>
+        </tr>
+        </thead>
         <tbody>
           <% student.forEach(function(Student){ %>
           <tr>
           <%   if(Student.username!=1234567890){  %>
           <td><%= Student.firstName %> <%= Student.midName %> <%= Student.lastName %></td>
           <td><%= Student.rollNo %></td>
-          <td><%= Student.doc %></td>
+          <td><a href="/photo-storage/<%= Student.rollNo %>.pdf" target="_blank"><button class="viewButton" type="button"  name="viewFile"><i class="fa fa-download" aria-hidden="true"></i></i></button></a></td>
           <td><form action="/user/admin/registeredStudents/view/<%=Student._id%>" method="POST"><button class="viewButton" type="submit" value="<%=Student._id %>" name="view"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></i></button></form></td>
-          <td><form action="/user/admin/registeredStudents/<%=Student._id%>?_method=DELETE" method="POST"><button class="viewButton" type="submit" value="<%=Student._id %>"name="delete"><i class="fa fa-times" aria-hidden="true"></i></button></form></td>
+          <td><form action="/user/admin/registeredStudents/<%=Student._id%>/<%=Student.rollNo%>?_method=DELETE" method="POST"><button class="viewButton" type="submit" value="<%=Student._id %>"name="delete"><i class="fa fa-times" aria-hidden="true"></i></button></form></td>
           <%   }  %>
-            </tr>
+            
             <% });%>
+            </tr>
         </tbody>
-      </tr>
-    </thead>
   </table>
 </div>
     </div>
