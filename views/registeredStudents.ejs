@@ -66,14 +66,16 @@ button.viewButton:hover{
       <tr>
         <td>Student Name</td>
         <td>Student Roll No.</td>
+        <td>Certificates</td>
         <td>View</td>
         <td>Delete</td>
         <tbody>
           <% student.forEach(function(Student){ %>
           <tr>
-          <%   if(student.rollNo!="1234567890"){  %>
+          <%   if(Student.username!=1234567890){  %>
           <td><%= Student.firstName %> <%= Student.midName %> <%= Student.lastName %></td>
-          <td><%= Student.rollNo %></td>          
+          <td><%= Student.rollNo %></td>
+          <td><%= Student.doc %></td>
           <td><form action="/user/admin/registeredStudents/view/<%=Student._id%>" method="POST"><button class="viewButton" type="submit" value="<%=Student._id %>" name="view"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></i></button></form></td>
           <td><form action="/user/admin/registeredStudents/<%=Student._id%>?_method=DELETE" method="POST"><button class="viewButton" type="submit" value="<%=Student._id %>"name="delete"><i class="fa fa-times" aria-hidden="true"></i></button></form></td>
           <%   }  %>

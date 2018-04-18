@@ -40,7 +40,8 @@ var studentSchema = new mongoose.Schema({
                 eduGradCgpaObt:      { type: Number, default: 0 },
                 eduGradCgpaMax:       { type: Number, default: 0 },
         gitHub:{ type: String, default: "N/A" },
-        skillTag:{ type: String, default: "N/A" }
+        skillTag:{ type: String, default: "N/A" },
+        isAdmin:{type:Boolean,default:false}
 });
 
 studentSchema.plugin(passportLocalMongoose);

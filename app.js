@@ -94,7 +94,17 @@ app.post("/login",passport.authenticate("local",{
     failureRedirect:"/login"
 }),function(req,res){
     userLogged=req.body.username;
+    console.log(typeof req.body.username);
     if(req.body.username==1234567890){
+        Student.update({username:req.body.username},{
+                    isAdmin:true
+    },function(err,object){
+        if(err){
+            console.log(err);
+        }
+        else
+        console.log(object);
+    })
     res.redirect("user/admin");    
     }
     else
