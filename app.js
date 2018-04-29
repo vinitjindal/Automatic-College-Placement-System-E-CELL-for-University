@@ -7,6 +7,7 @@ var express                 =   require("express"),
     app                     =   express(),
     bodyParser              =   require("body-parser"),
     mongoose                =   require("mongoose"),
+    flash                   =   require("connect-flash"),
     passport                =   require("passport"),
     LocalStrategy           =   require("passport-local"),
     passportLocalMongoose   =   require("passport-local-mongoose"),
@@ -15,7 +16,6 @@ var express                 =   require("express"),
     Company                 =   require("./models/company"),
     Student                 =   require("./models/students"),
     User                    =   require("./models/user");
-    
     var fs = require('fs');
     
 mongoose.connect("mongodb://stacksapien:stacksapien@ds233739.mlab.com:33739/e_cell_chitkara_university");
@@ -26,6 +26,10 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
+app.use(flash());
+
+var fileFlag=0;
+
 
 //MULTER CONFIG: to get file photos to temp server storage
   const multerConfig = {
@@ -44,7 +48,7 @@ app.use(express.static("public"));
         //get the file mimetype ie 'application/pdf' split and prefer the second value ie'pdf'
         const ext = file.mimetype.split('/')[1];
         //set the file fieldname to a unique name containing the original name, current datetime and the extension.
-        next(null, userLogged + '.'+ext);
+        next(null, studentLogged + '.'+ext);
       }
     }),
       // filter out and prevent non-image files.
@@ -93,7 +97,7 @@ app.get("/",function(req,res){
 // ================================
 
 app.get("/login",function(req, res) {
-    res.render("login");
+    res.render("login",{message:req.flash("error")});
 });
 
 // app.post("/login",function(req, res) {
@@ -114,6 +118,19 @@ app.post("/signup",function(req, res) {
             return res.render("signup");
         }
         passport.authenticate("local")(req,res,function(){
+            
+           Student.update({username:req.body.username},{
+    rollNo          :   req.body.username,    
+    firstName       :   req.body.firstName,
+    midName       :   req.body.midName,
+    lastName       :   req.body.lastName,
+    },function(err,object){
+        if(err){
+            console.log(err);
+        }
+        else
+        console.log("Sign up Changes alloted"+object);
+    })
                 res.redirect("/login");      
         });
     });
@@ -132,7 +149,9 @@ app.post("/signup",function(req, res) {
 });
 
 
+
 var userLogged;
+var studentLogged;
 app.post("/login",passport.authenticate("local",{
     failureRedirect:"/login"
 }),function(req,res){
@@ -152,6 +171,7 @@ app.post("/login",passport.authenticate("local",{
     }
     else
     {
+        studentLogged=req.body.username;
     res.redirect("user/"+req.body.username+"/userEdit");    
     }
 });
@@ -283,15 +303,16 @@ app.get("/user/admin/adminRecruited/:id",isLoggedIn,function(req, res) {
 
 app.get("/user/:username/userEdit",isLoggedIn,function(req,res){
     if(userLogged==req.params.username){
-    Student.find({rollNo:req.params.username}).find(function(err,user){
+    Student.find({username:req.params.username}).find(function(err,user){
         if(err){
             console.log(err);
         }
         else
         {
             console.log(user.length);
-            console.log(JSON.stringify(user));
-    res.render("userInput",{rollno:req.params.username});
+            console.log(user.rollNo);
+            // console.log(JSON.stringify(user));
+    res.render("userInput",{student:user});
         }
     });    
     }
@@ -306,9 +327,6 @@ app.get("/user/:username/userEdit",isLoggedIn,function(req,res){
 app.post("/user/:username/userEdit",isLoggedIn,multer(multerConfig).single('doc'),function(req,res){
     Student.update({username:req.params.username},{
     rollNo          :   req.params.username,    
-    firstName       :   req.body.student.firstName,
-    midName       :   req.body.student.midName,
-    lastName       :   req.body.student.lastName,
     mobileNo        :   req.body.student.mobileNo,
     gender          :   req.body.student.gender,
     dob             :   req.body.student.dob,
@@ -378,10 +396,15 @@ app.get("/logout",function(req, res) {
     res.redirect("/");
 });
 
+app.get("*",function(req, res) {
+    res.send("Page Not Found! Error 404")
+});
+
 function isLoggedIn(req,res,next) {
     if(req.isAuthenticated()){
         return next();
     }
+    req.flash("error","You must be Logged in to do that !");
     res.redirect("/login");
 }
 

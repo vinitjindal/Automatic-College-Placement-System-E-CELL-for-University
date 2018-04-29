@@ -83,21 +83,24 @@ button.viewButton:hover{
                         <h4>Roll No:</h4>
             <div class="row">
             <div class="col-md-4">
-                    <input class="form-control" type="number" name="student[rollNo]"  value="<%=rollno%>" placeholder="First Name"disabled>
+            <%    student.forEach(function(stu){ %>
+               
+                    <input class="form-control" type="number" name="student[rollNo]"  value="<%=stu.rollNo%>" placeholder="First Name"disabled>
                 </div>
                 </div>
             <h4>Personal Details</h4>
             <div class="row">
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[firstName]"  placeholder="First Name" required>
+                    <input class="form-control" type="text" name="student[firstName]" value="<%=stu.firstName%>" placeholder="First Name" disabled>
                 </div>
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[midName]"  placeholder="Middle Name">
+                    <input class="form-control" type="text" name="student[midName]"  value="<%=stu.midName%>" placeholder="Middle Name"disabled>
                 </div>
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[lastName]" placeholder="Last Name" required>
+                    <input class="form-control" type="text" name="student[lastName]" value="<%=stu.lastName%>" placeholder="Last Name" disabled>
                 </div>
             </div>
+              <%  }); %>
             <div class="row">
                 <div class="col-md-4">
                     <h5>Mobile No: (10-Digit)</h5>
