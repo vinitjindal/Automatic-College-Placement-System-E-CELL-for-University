@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Cell Division System</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/Pretty-Header.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>
+    /* Styling the para-text  */
+    p.feature_ptext{
+      color: white;
+    }
+    /* Styling the container of subscribe div */
+    div.container-fluid.subscribe{
+      background: url("assets/img/ian-schneider-66374.jpg");
+      height: 400px;
+      width: 100%;
+      object-fit: fill ;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    /* Styling the mid body */
+    div.container.mid{
+      width: 100%;
+    }
+    .foot{
+      color: #2b2b2b;
+    }
+    body{
+      white;
+      font-family: 'Roboto', sans-serif;
+    }
+    .navbar-default {
+        background-color: transparent;
+        border-color: transparent;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        padding: 0;
+        margin: 0;
+    }
+    .navbar-default .navbar-nav>li>a {
+        color: white;
+    }
+    button.btn.btn-primary.sendemail{
+      border: none;
+      border-radius:  6px;
+    }
+    div.jumbotron.event{
+      padding-right:50px;
+      background-image:url("https://images.unsplash.com/photo-1478104718532-efe04cc3ff7f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a034088c9404865910b97a6cf6b757ae&auto=format&fit=crop&w=755&q=80");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-clip: border-box;
+      line-height:3px;
+      height: 400px;
+      object-fit: cover ;
+      background-size: cover;
+    }
+    .round{
+        border-radius:15px;
+        height:10%;
+        width:30%;
+    }
+    </style>
+
+</head>
+<body>
+  <!-- navbar started ! -->
+    <nav class="navbar navbar-default ">
+        <div class="container-fluid">
+            <div class="navbar-header"><a class="navbar-brand navbar-link" href="/"> <a class="navbar-brand"></a><img style="height:40px;" src="assets/img/logo_chitkara_black.png" alt="Chitkara Universiry"></a>
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li role="presentation"><a href="/">Home</a></li>
+                    <li role="presentation"><a href="event">Achievements | Events </a></li>
+                    <li role="presentation"><a href="login">LogIn </a></li>
+                    <li role="presentation"><a href="signup">SignUp </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- navbar finished! -->
+    <!-- Header - jumbotron started -->
+    <div class="header_jumbotron img-fluid">
+        <div class="jumbotron event">
+            <h1 class="text-right">We want the best!</h1>
+            <p class="text-right link">#chitkaraplacementcell</p>
+        </div>
+    </div>
+
+    <!-- mid body text started -->
+    <h1><span style="color:red;"><%= event.caption %></span></h1>
+    <hr>
+    <%    var str=event.caption ;                               %>
+    <%    var replaced= str.split(' ').join('_');               %>
+    <div style="text-align:center;" class="container">
+  <img style="height:auto;max-width:100%;" class="round" src="/photo-storage/<%=replaced%>.jpeg">
+  <hr style="margin:30px 5px  15px 5px;">
+
+    <i style="font-size:1.4em;"><%= event.shortDescript %></i>
+  <p style="font-size:1.4em;margin-top:5px;"><%= event.eventDetail %></p>
+      <p style="font-size:1.2em;" ><%= event.eventDate %></p>
+</div>
+ 
+    <!-- footer body started -->
+    <div class="container-fluid">
+        <div class="small_dev spacefeature">
+            <div class="row">
+                <div class="col-md-6" style="padding-left:50px;"><img src="/assets/img/logo_chitkara_black.png" width="150" height="40"></div>
+                <div class="col-md-6" style="text-align:center;">
+                    <div class="row">
+                        <div class="col-md-1"><i class="fa fa-facebook foot"></i></div>
+                        <div class="col-md-1"><i class="fa fa-twitter foot"></i></div>
+                        <div class="col-md-1"><i class="fa fa-linkedin-square foot"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <hr>
+        <p style="font-size:12px;padding-bottom:10px;">© 2018 Chitkara University . All right reserved</p>
+    </div>
+    <!-- footer body finished -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

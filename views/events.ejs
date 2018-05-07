@@ -53,6 +53,17 @@
       border: none;
       border-radius:  6px;
     }
+    div.jumbotron.event{
+      padding-right:50px;
+      background-image:url("https://images.unsplash.com/photo-1478104718532-efe04cc3ff7f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a034088c9404865910b97a6cf6b757ae&auto=format&fit=crop&w=755&q=80");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-clip: border-box;
+      line-height:3px;
+      height: 400px;
+      object-fit: cover ;
+      background-size: cover;
+    }
     </style>
 
 </head>
@@ -60,7 +71,7 @@
   <!-- navbar started ! -->
     <nav class="navbar navbar-default ">
         <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand navbar-link" href=""> <a class="navbar-brand"></a><img style="height:40px;" src="assets/img/logo_chitkara_black.png" alt="Chitkara Universiry"></a>
+            <div class="navbar-header"><a class="navbar-brand navbar-link" href="/"> <a class="navbar-brand"></a><img style="height:40px;" src="assets/img/logo_chitkara_black.png" alt="Chitkara Universiry"></a>
                 <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
@@ -75,59 +86,38 @@
     </nav>
     <!-- navbar finished! -->
     <!-- Header - jumbotron started -->
-    <div class="header_jumbotron">
-        <div class="jumbotron">
-            <h1 class="text-right">Placement Cell Division</h1>
-            <p class="text-right">#Explore Your Potential</p>
-            <p class="text-right link">Learn More </p>
-            <p></p>
+    <div class="header_jumbotron img-fluid">
+        <div class="jumbotron event">
+            <h1 class="text-right">We want the best!</h1>
+            <p class="text-right link">#chitkaraplacementcell</p>
         </div>
     </div>
-    <!-- Header jumbotron finishes -->
-    <!-- mid body text started -->
-    <h1>Top <span style="color:red;">Campus Recruiters</span></h1>
-    <hr>
-    <div class="container-fluid with_para para">
-        <p>Our Engineering graduates go on to great careers, we’re hands on and responsive in our teaching,&nbsp;we provide a great environment to study and our research is world class.&nbsp;We have established an unassailable reputation for&nbsp;very strong
-            on-campus recruitments on the sheer virtue of our intensive focus on making all&nbsp;our graduates “industry ready”, but brilliant campus recruitment is a end result of our teaching approach&nbsp;which is learning-centric enhancing knowledge,
-            &nbsp;skills, and understanding through&nbsp;practical experience. </p>
-    </div>
-    <div>
-      <!-- Placment Logo grid started -->
-        <div class="container placementlogo">
-            <div class="row">
-                <div class="col-lg-11 col-md-12"><img src="assets/img/texas.jpg"><img src="assets/img/wipro.jpg"><img src="assets/img/voda.jpg"><img src="assets/img/taj.jpg"><img src="assets/img/sap.jpg"><img src="assets/img/pepsico.jpg"><img src="assets/img/oracle.jpg"><img src="assets/img/nvidia.jpg">
-                    <img
-                    src="assets/img/microsoft.jpg"><img src="assets/img/mahindra.jpg"><img src="assets/img/mahindra_2.jpg"><img src="assets/img/lt.jpg"><img src="assets/img/ITC.jpg"><img src="assets/img/infosys.jpg"><img src="assets/img/hdfc.jpg"><img src="assets/img/ibm.jpg"><img src="assets/img/hindus.jpg">
-                        <img
-                        src="assets/img/hcl.jpg"><img src="assets/img/google.jpg"><img src="assets/img/fortis.jpg"><img src="assets/img/dell.jpg"><img src="assets/img/accent.jpg"><img src="assets/img/airtel.jpg"><img src="assets/img/citibank.jpg"></div>
-            </div>
-        </div>
-    </div>
-    <!-- mid body text & placment logo grid finished -->
-    <!-- feature container started -->
-    <div class="container mid">
-        <h1 class="feature_text">Features </h1>
-        <div class="row feature">
-            <div class="col-md-4 item"><i  class="fa fa-pencil item"></i>
-                <h1 class="feature_text featurehead spacefeature">Various Aspects</h1>
-                <p class="feature_ptext para">Easily edit your details for company recognition  </p>
-            </div>
-            <div class="col-md-4 item"><i class="fa fa-gamepad item"></i>
-                <h1 class="feature_text featurehead spacefeature">Build Up Project Portfolio </h1>
-                <p class="feature_ptext para">List out the technology you used.Your special projects.Show off your skills </p>
-            </div>
-            <div class="col-md-4 item"><i class="fa fa-cloud-upload item"></i>
-                <h1 class="feature_text featurehead spacefeature">Upload Your Resume</h1>
-                <p class="feature_ptext para">Upload your resume.Leave the hassle of submitting Hard copies and ceritificates to Mentor.</p>
-            </div>
-        </div>
-    </div>
-    <!-- Button to learn more about the featuring content -->
-    <div class="container-fluid subscribe ">
 
+    <!-- mid body text started -->
+    <h1>Photo<span style="color:red;">Gallery</span></h1>
+    <hr>
+  
+    <div class="container" >
+   <div class="row">
+    <%    var str ;                   %>
+    <%    var replaced;               %>
+    <% events.forEach(function(event){ %>
+    <%    str=event.caption; %>
+    <%  replaced = str.split(' ').join('_'); %>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="/photo-storage/<%=replaced%>.jpeg" alt="...">
+      <div class="caption">
+        <h3><%=event.caption%></h3>
+        <p><%=event.shortDescript%></p>
+        <p><a href="/event/<%=event._id%>" class="btn btn-primary" role="button">Read More</a></p>
+      </div>
     </div>
-    <!-- feature container finished -->
+  </div>
+  <% });                              %>
+</div>
+
+</div>
     <!-- footer body started -->
     <div class="container-fluid">
         <div class="small_dev spacefeature">

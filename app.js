@@ -15,6 +15,8 @@ var express                 =   require("express"),
     methodOverride          =   require("method-override"),
     Company                 =   require("./models/company"),
     Student                 =   require("./models/students"),
+    Event                   =   require("./models/event"),
+    fs                      =   require("fs"),
     User                    =   require("./models/user");
     var fs = require('fs');
     
@@ -39,7 +41,7 @@ var fileFlag=0;
 
       //specify destination
       destination: function(req, file, next){
-        next(null, './public/photo-storage');
+        next(null, './public/docs');
       },
 
       //specify the filename to be unique
@@ -57,7 +59,7 @@ var fileFlag=0;
             next();
           }
 
-        // only permit image mimetypes
+        // only permit pdf mimetypes
         const pdf = file.mimetype.startsWith('application/');
         if(pdf){
           console.log('pdf uploaded');
@@ -70,6 +72,48 @@ var fileFlag=0;
     }
   };
 
+var photoDate;
+
+// Multer configuration for Event Photo Upload System
+const multerConfigForEvent = {
+
+    //specify diskStorage (another option is memory)
+    storage: multer.diskStorage({
+
+      //specify destination
+      destination: function(req, file, next){
+        next(null, './public/photo-storage');
+      },
+
+      //specify the filename to be unique
+      filename: function(req, file, next){
+        console.log(file);
+        //get the file mimetype ie 'application/pdf' split and prefer the second value ie'pdf'
+        const ext = file.mimetype.split('/')[1];
+        //set the file fieldname to a unique name containing the Date() current.
+        photoDate=Date.now();
+        next(null, photoDate + '.'+ext);
+      }
+    }),
+      // filter out and prevent non-image files.
+    fileFilter: function(req, file, next){
+          if(!file){
+            next();
+          }
+
+        // only permit image mimetypes
+        const jpeg = file.mimetype.startsWith('image/');
+        const jpg = file.mimetype.startsWith('image/')
+        if(jpeg || jpg){
+          console.log('jpeg/jpg uploaded');
+          next(null, true);
+        }else{
+          console.log("file not supported")
+          //TODO:  A better message response to user on failure.
+          return next();
+        }
+    }
+  };
 
 
 //======================
@@ -92,6 +136,30 @@ app.get("/",function(req,res){
     res.render("index");
 });
 
+app.get("/event",function(req, res) {
+    Event.find({},function(err, allEvent) {
+        if(err){
+            console.log(err);
+        }
+        else
+        {   
+            console.log(allEvent);
+            res.render("events",{events:allEvent});
+        }
+    });
+    
+});
+app.get("/event/:id",function(req,res){
+    Event.findById(req.params.id,function(err,foundEvent){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(foundEvent);
+            res.render("eventDetail",{event:foundEvent});
+        }
+    });
+});
 // ================================
 // ======== AUTH ROUTES ===========
 // ================================
@@ -261,10 +329,6 @@ app.post("/user/admin/registeredStudents/view/:id",isLoggedIn,function(req, res)
     });
 });
 
-
-
-
-
 app.delete("/user/admin/adminView/:id",isLoggedIn,function(req, res) {
     Company.findByIdAndRemove(req.params.id,function(err){
         if(err)
@@ -298,6 +362,30 @@ app.get("/user/admin/adminRecruited/:id",isLoggedIn,function(req, res) {
             }
             });
         }
+    });
+});
+
+app.get("/user/admin/adminEvent",function(req, res) {
+    res.render("adminEvent.ejs");
+});
+
+app.post("/user/admin/adminEvent",isLoggedIn,multer(multerConfigForEvent).single('img'),function(req,res){
+    Event.create(req.body.event,function(err,event){
+        if(err){
+            console.log(err);
+        }
+        else{
+            var str = req.body.event.caption;
+            var replaced = str.split(' ').join('_');
+            
+        fs.rename('public/photo-storage/'+photoDate+'.jpeg','public/photo-storage/'+replaced+'.jpeg',function(err){
+            if(err){
+                console.log(err);
+            }
+        });
+            console.log(event);
+        }
+        res.redirect("/user/admin/adminEvent");
     });
 });
 
@@ -393,7 +481,7 @@ app.get('/photo-storage/:id', function (req, res, next) {
 
 app.get("/logout",function(req, res) {
     req.logout();
-    res.redirect("/");
+    res.redirect("/login");
 });
 
 app.get("*",function(req, res) {

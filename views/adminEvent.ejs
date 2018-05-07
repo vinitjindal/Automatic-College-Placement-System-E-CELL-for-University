@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+a<!DOCTYPE html>
 <html>
 
 <head>
@@ -49,70 +49,39 @@ div.container.formnav{
 <body>
     <div class="container formnav">
         <ul class="nav nav-pills">
-            <li class="active"><a href="/user/admin">Create Recruiter Profile</a></li>
+            <li ><a href="/user/admin">Create Recruiter Profile</a></li>
             <li><a href="/user/admin/adminView">View Recruiters Profile</a></li>
             <li ><a href="/user/admin/registeredStudents">Registered Students</a></li>
-            <li ><a href="/user/admin/adminEvent">Add Event | Achievement</a></li>
+            <li class="active"><a href="/user/admin/adminEvent">Add Event | Achievement</a></li>
             <li class="navbar-right"><a href="/logout">
   Sign out<i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
               </li>
         </ul>
         <br>
-        <form method="POST" >
-            <h4>Company Details</h4>
+        <form method="POST" enctype="multipart/form-data">
+            <h4>Add an Event & Fill it's Details:</h4>
             <div class="row">
                 <div class="col-md-12">
-                    <input class="form-control" type="text" name="company[companyName]" placeholder="Company Name">
+                    <input class="form-control" type="text" name="event[caption]" placeholder="Event Name/Caption">
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <h5>Branch: </h5>
-                    <select class="form-control"name="company[branch]">
-                        <optgroup label="Choose branch">
-                            <option value="CSE" >CSE</option>
-                            <option value="ECE">ECE</option>
-                            <option value="BCA">BCA</option>
-                        </optgroup>
-                    </select>
+                <div class="col-md-12">
+                    <textarea name="event[shortDescript]" class="form-control" rows="2" cols="80" placeholder="Enter Short Description Here"></textarea>
                 </div>
-                <div class="col-md-4">
-                    <h5>Last Applying Date</h5>
-                    <input class="form-control" min="01-01-2018" max="01-01-2099" type="date" name="company[lastDate]" required >
-                </div>
-                <div class="col-md-4">
-                    <h5>E-mail ID of company</h5>
-                    <input class="form-control" type="email" name="company[QuerlyID]" placeholder="abc@xyz.com" required>
+                <div style="margin-top:12px;" class="col-md-12">
+                    <textarea name="event[eventDetail]" class="form-control" rows="8" cols="80" placeholder="Enter Details Here"></textarea>
                 </div>
                 <div class="col-md-12">
+                    <h5>Add Event Date:</h5>
+                    <input class="form-control" type="date" name="event[eventDate]" placeholder="abc@xyz.com">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Profile (Skills) Required</h5>
-                    <textarea class="recruitskillTag" name="company[projectSkill]" required></textarea>
-                </div>
-            </div>
-            <h4>Candidate Requirement</h4>
-            <div class="row">
-                <div class="col-md-2">
-                    <h5>Min. CGPA</h5></div>
-                <div class="col-md-2">
-                    <input class="form-control" type="number" name="company[minCgpa]" min="0" step="0.1"max="10">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <h5>Type Of Company</h5></div>
-                <div class="col-md-2">
-                    <input class="form-control" type="text" name="company[typeCompany]" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 lower">
-                    <button class="btn btn-primary" type="submit">Save </button>
-                </div>
-            </div>
+
+                <div class="col-md-12">
+            <p>*Upload Jpeg image :</p>
+            <input type="file" class="uploadbutton" name="img" >
+            <button style="margin-top:20px;" class="btn btn-primary" type="submit" >Save </button>
+        </div>
         </form>
     </div>
     <script src="/assets/js/jquery.min.js"></script>
