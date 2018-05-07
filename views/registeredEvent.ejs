@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Recruited Company Profile</title>
+    <title>View Registered Event</title>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/styles_form.css">
@@ -39,10 +39,10 @@ button.viewButton:hover{
     <div class="container formnav">
         <ul class="nav nav-pills">
             <li ><a href="/user/admin">Create Recruiter Profile</a></li>
-            <li  class="active"><a href="/user/admin/adminView">View Recruiters Profile</a></li>
+            <li ><a href="/user/admin/adminView">View Recruiters Profile</a></li>
             <li ><a href="/user/admin/registeredStudents">Registered Students</a></li>
             <li ><a href="/user/admin/adminEvent">Add Event | Achievement</a></li>
-            <li ><a href="/user/admin/registeredEvent">Delete Event</a></li>
+            <li class="active" ><a href="/user/admin/registeredEvent">Delete Event</a></li>
             <li class="navbar-right dropdown-toggle" id="dropdownMenu1">
                <a href="/logout">
                  Sign out<i style="margin-left:4px;font-size:1.4em;vertical-align:middle;" class="fa fa-sign-out"></i></a>
@@ -66,24 +66,22 @@ button.viewButton:hover{
   <table class="table">
     <thead>
       <tr>
-        <td>Company Name</td>
-        <td>branch</td>
+        <td>Event Name</td>
         <td>Date</td>
-        <td>View</td>
         <td>Delete</td>
+        </tr>
+        </thead>
         <tbody>
-          <% companies.forEach(function(company){ %>
+          <% events.forEach(function(event){ %>
           <tr>
-          <td><%= company.companyName %></td>
-          <td><%= company.branch %></td>          
-          <td><%= company.lastDate%></td>          
-          <td><form action="/user/admin/adminRecruited/<%=company._id%>" method="GET"><button class="viewButton" type="submit" value="<%=company._id %>" name="view"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></i></button></form></td>
-          <td><form action="/user/admin/adminView/<%=company._id%>?_method=DELETE" method="POST"><button class="viewButton" type="submit" value="<%=company._id %>"name="delete"><i class="fa fa-times" aria-hidden="true"></i></button></form></td>
-            </tr>
+          
+          <td><%= event.caption %></td>
+          <td><%= event.eventDate %></td>
+          <td><form action="/user/admin/registeredEvent/<%=event._id%>?_method=DELETE" method="POST"><button class="viewButton" type="submit" value="<%=event._id %>"name="delete"><i class="fa fa-times" aria-hidden="true"></i></button></form></td>
+          
             <% });%>
+            </tr>
         </tbody>
-      </tr>
-    </thead>
   </table>
 </div>
     </div>

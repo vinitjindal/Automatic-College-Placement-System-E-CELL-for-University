@@ -53,6 +53,41 @@
       border: none;
       border-radius:  6px;
     }
+    /* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 300px) {
+    .navbar-collapse{
+        background:rgba(0,0,0,0.4);
+    }
+    div.navbar-header{
+        background:rgba(0,0,0,0.4);
+    }
+    
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .navbar-collapse{
+        background:rgba(0,0,0,0.4);
+    }
+    div.navbar-header{
+        background:rgba(0,0,0,0.4);
+    }
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .navbar-collapse{
+        background:rgba(0,0,0,0);
+    }
+    div.navbar-header{
+        background:rgba(0,0,0,0);
+    }
+}
+    
+} 
+.footlink:hover{
+    color:red;
+}
     </style>
 
 </head>
@@ -78,7 +113,7 @@
     <div class="header_jumbotron">
         <div class="jumbotron">
             <h1 class="text-right">Placement Cell Division</h1>
-            <p class="text-right">#Explore Your Potential</p>
+            <p class="text-right" style="color:red;">#Explore Your Potential</p>
             <p class="text-right link">Learn More </p>
             <p></p>
         </div>
@@ -135,9 +170,10 @@
                 <div class="col-md-6" style="padding-left:50px;"><img src="assets/img/logo_chitkara_black.png" width="150" height="40"></div>
                 <div class="col-md-6" style="text-align:center;">
                     <div class="row">
-                        <div class="col-md-1"><i class="fa fa-facebook foot"></i></div>
-                        <div class="col-md-1"><i class="fa fa-twitter foot"></i></div>
-                        <div class="col-md-1"><i class="fa fa-linkedin-square foot"></i></div>
+                        <div class="col-md-1"><a class="footlink" href="https://www.facebook.com/ChitkaraU/"><i class="fa fa-facebook foot"></i></a></div>
+                        <div class="col-md-1"><a class="footlink" href="https://twitter.com/ChitkaraU"><i class="fa fa-twitter foot"></i></a></div>
+                        <div class="col-md-1"><a class="footlink" href="https://www.linkedin.com/school/chitkara-university/"><i class="fa fa-linkedin-square foot"></i></a></div>
+                        
                     </div>
                 </div>
             </div>

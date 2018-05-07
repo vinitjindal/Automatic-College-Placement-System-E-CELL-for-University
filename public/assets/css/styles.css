@@ -246,3 +246,11 @@ div.small_dev {
 .subscribetextinc{
   font-size: 5em;
 }
+button.viewButton{
+  font-size: 1.4em;
+  border: none;
+  background-color: transparent;
+}
+button.viewButton:hover{
+  color: #e74c3c;
+}

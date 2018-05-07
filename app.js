@@ -389,6 +389,33 @@ app.post("/user/admin/adminEvent",isLoggedIn,multer(multerConfigForEvent).single
     });
 });
 
+app.get("/user/admin/registeredEvent",function(req, res) {
+    Event.find({},function(err, allEvent) {
+        if(err){
+            console.log(err);
+        }
+        else
+        {
+            res.render("registeredEvent",{events:allEvent});
+        }
+    });
+    
+});
+
+app.delete("/user/admin/registeredEvent/:id",isLoggedIn,function(req, res) {
+    Event.findByIdAndRemove(req.params.id,function(err){
+        if(err)
+        {
+        console.log(err);    
+        }
+        else
+        {   console.log("Event removed!");
+            res.redirect("/user/admin/registeredEvent");
+        }
+        
+    });
+});
+
 app.get("/user/:username/userEdit",isLoggedIn,function(req,res){
     if(userLogged==req.params.username){
     Student.find({username:req.params.username}).find(function(err,user){
@@ -485,7 +512,7 @@ app.get("/logout",function(req, res) {
 });
 
 app.get("*",function(req, res) {
-    res.send("Page Not Found! Error 404")
+    res.send("Page Not Found! Error 404");
 });
 
 function isLoggedIn(req,res,next) {
