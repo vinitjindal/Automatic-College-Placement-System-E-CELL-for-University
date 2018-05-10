@@ -35,7 +35,7 @@ div.row.cgpa{
                  <h4>Personal Details:</h4></div>
              <div class="col-md-3">
                  <p>Full Name :</p>
-                 <p class="attribvalue"><%= student.firstName %> <%= student.midName %> <%= student.lastName %></p>
+                 <p class="attribvalue"><%= student.firstName.toUpperCase() %> <%= student.midName.toUpperCase() %> <%= student.lastName.toUpperCase() %></p>
              </div>
              <div class="col-md-3">
                  <p>Mobile No :</p>
@@ -43,7 +43,7 @@ div.row.cgpa{
              </div>
              <div class="col-md-3">
                  <p>Gender :</p>
-                 <p class="attribvalue"><%=student.gender%></p>
+                 <p class="attribvalue"><%=student.gender.toUpperCase()%></p>
              </div>
              <div class="col-md-3">
                  <p>Date of Birth :</p>
@@ -56,7 +56,19 @@ div.row.cgpa{
          <div class="row">
              <div class="col-md-3">
                  <p>E-Mail ID :</p>
-                 <p class="attribvalue"><%=student.mailId%></p>
+                 <p class="attribvalue"><%=student.mailId.toUpperCase()%></p>
+             </div>
+         </div>
+          <div class="row">
+             <div class="col-md-3">
+                 <p>Dept :</p>
+                 <p class="attribvalue"><%=student.dept.toUpperCase()%></p>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3">
+                 <p>Session :</p>
+                 <p class="attribvalue"><%=student.session%></p>
              </div>
          </div>
      </div>
@@ -68,8 +80,8 @@ div.row.cgpa{
              <div class="col-md-3">
                  <p>Permanent Address :</p>
                      <address class="attribvalue">
-                      <%=student.houseNo%> <%=student.town%>
-                      <%=student.street%> <%=student.state%>
+                      <%=student.houseNo%> <%=student.town.toUpperCase()%>
+                      <%=student.street.toUpperCase()%> <%=student.state.toUpperCase()%>
                       <%=student.pinCode%>
                      </address>
              </div>
@@ -79,7 +91,7 @@ div.row.cgpa{
              </div>
                       <div class="col-md-3">
                  <p>Git-Hub Link :</p>
-                 <p class="attribvalue"><%=student.gitHub%> </p>
+                 <p class="attribvalue"><%=student.gitHub.toUpperCase()%> </p>
              </div>
          </div>
      </div>
@@ -102,29 +114,29 @@ div.row.cgpa{
                          </thead>
                          <tbody>
                              <tr>
-                                 <td><%=student.edu10Name%></td>
-                                 <td><%=student.edu10Type%></td>
-                                 <td><%=student.edu10Board%></td>
+                                 <td><%=student.edu10Name.toUpperCase()%></td>
+                                 <td><%=student.edu10Type.toUpperCase()%></td>
+                                 <td><%=student.edu10Board.toUpperCase()%></td>
                                  <td><%=student.edu10Year%></td>
-                                 <td><%=student.edu10Stream%></td>
+                                 <td><%=student.edu10Stream.toUpperCase()%></td>
                                  <td><%=student.edu10CgpaObt%></td>
                                  <td><%=student.edu10CgpaMax%></td>
                              </tr>
                                                           <tr>
-                                 <td><%=student.edu12Name%></td>
-                                 <td><%=student.edu12Type%></td>
-                                 <td><%=student.edu12Board%></td>
+                                 <td><%=student.edu12Name.toUpperCase()%></td>
+                                 <td><%=student.edu12Type.toUpperCase()%></td>
+                                 <td><%=student.edu12Board.toUpperCase()%></td>
                                  <td><%=student.edu12Year%></td>
-                                 <td><%=student.edu12Stream%></td>
+                                 <td><%=student.edu12Stream.toUpperCase()%></td>
                                  <td><%=student.edu12CgpaObt%></td>
                                  <td><%=student.edu12CgpaMax%></td>
                              </tr>
                                                           <tr>
-                                 <td><%=student.eduGradName%></td>
-                                 <td><%=student.eduGradType%></td>
-                                 <td><%=student.eduGradBoard%></td>
+                                 <td><%=student.eduGradName.toUpperCase()%></td>
+                                 <td><%=student.eduGradType.toUpperCase()%></td>
+                                 <td><%=student.eduGradBoard.toUpperCase()%></td>
                                  <td><%=student.eduGradYear%></td>
-                                 <td><%=student.eduGradStream%></td>
+                                 <td><%=student.eduGradStream.toUpperCase()%></td>
                                  <td><%=student.eduGradCgpaObt%></td>
                                  <td><%=student.eduGradCgpaMax%></td>
                              </tr>

@@ -6,6 +6,8 @@ var studentSchema = new mongoose.Schema({
     rollNo  :   {type:Number},
     password:   { type: String},
     firstName:  { type: String, default: "N/A" },
+    dept:       { type: String, default: "N/A" },
+    session:    { type: Number,default: 2016},
     midName:    { type: String, default: "N/A" },
     lastName:   { type: String, default: "N/A" },
     mobileNo:   { type: String, default: "N/A" }, 

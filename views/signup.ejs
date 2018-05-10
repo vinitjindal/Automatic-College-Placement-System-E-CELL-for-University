@@ -30,7 +30,25 @@
   .navbar-default .navbar-nav>li>a {
     color: white;
   }
+  input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+  
   </style>
+    <script>
+  function check(){
+  var x=document.getElementById("username").value;
+  var y=x.length;
+  if(y<10){
+    alert("Please enter correct Roll Number/ID");
+    document.getElementById("username").focus();
+  return false;}
+  else {
+  return true;
+  }};
+</script>
 </head>
 <body>
   <!-- navbar started ! -->
@@ -58,21 +76,22 @@
           <h4 class="loginh4" style="text-transform:uppercase;margin-top:30px;">Register</h4>
           <br>
           <div class="panel-body">
-            <form action="" method="POST">
+          
+            <form onsubmit="return check()" method="POST">
               <div class="form-group">
-                <input type="number" name="username" class="form-control" placeholder="Enter Roll No" formnovalidate="Enter" value="" required>
+                <input type="number" id="username"  name="username" class="form-control" placeholder="Enter Roll No" formnovalidate="Enter" value="" maxlength="10" required>
               </div>
               <div class="form-group">
-                <input type="text" name="firstName" class="form-control" placeholder="Enter First Name" formnovalidate="Enter" value="" required>
+                <input type="text" name="firstName" class="form-control" placeholder="Enter First Name (Req.)" formnovalidate="Enter" pattern="^[A-Za-z -]+$"  value="" required title="Only alphabets are accepted!">
               </div>
               <div class="form-group">
-                <input type="text" name="midName" class="form-control" placeholder="Enter Middle Name" formnovalidate="Enter" value="">
+                <input type="text" name="midName" class="form-control" placeholder="Enter Middle Name" formnovalidate="Enter" pattern="^[A-Za-z -]+$" value="" title="Only alphabets are accepted!">
               </div>
               <div class="form-group">
-                <input type="text" name="lastName" class="form-control" placeholder="Enter Last Name" formnovalidate="Enter" value="" required>
+                <input type="text" name="lastName" class="form-control" placeholder="Enter Last Name (Req.)" formnovalidate="Enter" value="" pattern="^[A-Za-z -]+$" required title="Only alphabets are accepted!">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="Enter password" name="password" value="" required>
+                <input type="password" class="form-control" placeholder="Enter password" name="password" value="" minlength="8" maxlength="16" required>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-default btn-lg btn-block" name="button" value="Login">Sign Up</button>
@@ -95,5 +114,4 @@
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
-
 </html>

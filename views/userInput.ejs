@@ -50,9 +50,46 @@ button.viewButton{
 button.viewButton:hover{
   color: #e74c3c;
 }
-
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 </style>
-
+<script>
+ function check(){
+    var tenthObt=document.getElementById("edu10CgpaObt").value;
+    var tenthMax=document.getElementById("edu10CgpaMax").value;
+    var twelthObt=document.getElementById("edu12CgpaObt").value;
+    var twelthMax=document.getElementById("edu12CgpaMax").value;
+    var gradObt=document.getElementById("eduGradCgpaObt").value;
+    var gradMax=document.getElementById("eduGradCgpaMax").value;
+    if(Number(tenthObt)>Number(tenthMax)){
+        alert("10th Marks/CGPA can't exceed maximum marks.Please enter correct marks!");
+        
+        document.getElementById("edu10CgpaMax").focus();
+        return false;
+        
+    }else if(Number(twelthObt)>Number(twelthMax)){
+        alert("12th Marks Marks/CGPA can't exceed maximum marks.Please enter correct marks!");
+        document.getElementById("edu12CgpaMax").focus();
+        return false;
+    }else if(Number(gradObt)>Number(gradMax)){
+        alert("Graduation Marks/CGPA can't exceed maximum marks.Please enter correct marks!");
+        document.getElementById("eduGradCgpaMax").focus();
+        return false;
+    }
+     else{
+         return true;
+     }
+ };
+    
+</script>
 </head>
 <body>
     <div class="container formnav">
@@ -79,7 +116,25 @@ button.viewButton:hover{
             </li>
         </ul>
         <br>
-        <form method="POST" enctype="multipart/form-data" >
+        <form method="POST" onsubmit="return check()" enctype="multipart/form-data" >
+            <div class="row">
+                <div class="col-md-4">
+                <select class="form-control" name="student[dept]" required >
+                        <option value="CSE" selected >CSE</option>
+                        <option value="HM" >HM</option>
+                        <option value="BSC">BSC</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                <select class="form-control" name="student[session]" required >
+                        <option value="2015" >2015</option>
+                        <option value="2016" selected >2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                    </select>
+                </div>
+                
+            </div>
                         <h4>Roll No:</h4>
             <div class="row">
             <div class="col-md-4">
@@ -103,11 +158,11 @@ button.viewButton:hover{
               <%  }); %>
             <div class="row">
                 <div class="col-md-4">
-                    <h5>Mobile No: (10-Digit)</h5>
+                    <h5>Mobile No: (10-Digit) <span style="color:red;">*</span></h5>
                     <input class="form-control" type="text" name="student[mobileNo]"  maxlength="10" pattern="[1-9]{1}[0-9]{9}" placeholder="Enter 10 Digit Mobile Number">
                 </div>
                 <div class="col-md-4">
-                    <h5>Gender:</h5>
+                    <h5>Gender: <span style="color:red;">*</span></h5>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="checkbox">
@@ -131,7 +186,7 @@ button.viewButton:hover{
                 </div>
                 <div class="col-md-4">
                     <h5>Date of Birth:</h5>
-                    <input class="form-control" type="date" name="student[dob]" required>
+                    <input class="form-control" type="date" name="student[dob]" min="1990-01-02" max="2005-12-31" required>
                 </div>
                 <div class="col-md-12">
                 </div>
@@ -149,7 +204,7 @@ button.viewButton:hover{
             <h4>Address </h4>
             <div class="row">
                 <div class="col-md-2">
-                    <h5>State </h5></div>
+                    <h5>State :<span style="color:red;"> *</span> </h5></div>
                 <div class="col-md-4">
                     <select class="form-control" name="student[state]" required>
                         <optgroup label="Select Your State">
@@ -162,30 +217,30 @@ button.viewButton:hover{
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <h5>Town/Village </h5></div>
+                    <h5>Town/Village :<span style="color:red;"> *</span> </h5></div>
                 <div class="col-md-4">
                     <input class="form-control" name="student[town]" type="text">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <h5>House No:/Flat No:</h5></div>
+                    <h5>House/Flat No :<span style="color:red;">*</span></h5></div>
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[houseNo]">
+                    <input class="form-control" type="text" name="student[houseNo]" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <h5>Street </h5></div>
+                    <h5>Street :<span style="color:red;">*</span> </h5></div>
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[street]">
+                    <input class="form-control" type="text" name="student[street]" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <h5>Pin Code</h5></div>
+                    <h5>Pin Code :<span style="color:red;">*</span></h5></div>
                 <div class="col-md-4">
-                    <input class="form-control" type="text" name="student[pinCode]">
+                    <input class="form-control" type="text" name="student[pinCode]" required>
                 </div>
             </div>
             <div class="container">
@@ -210,42 +265,30 @@ button.viewButton:hover{
   <tbody>
     <tr>
       <td><input class="form-control" type="text" name="student[edu10Name]" required ></td>
-      <td><select class="form-control" name="student[edu10Type]" required>
-                        <option value="10th" selected="">10th </option>
-                        <option value="+2 or equivalent">+2 or equivalent</option>
-                        <option value="Under Graduation">Under Graduation</option>
-                    </select></td>
+      <td><input class="form-control" type="text" name="student[edu10Type]" value="10th" disabled></td>
       <td><input class="form-control" type="text" name="student[edu10Board]" value="" required ></td>
       <td><input class="form-control" type="text" name="student[edu10Stream]" value="" required ></td>
-      <td><input class="form-control" type="text" name="student[edu10Year]" required ></td>
-      <td><input class="form-control" step="0.01" type="number" name="student[edu10CgpaObt]" min="0" max="1000" required ></td>
-      <td><input class="form-control" step="0.01" type="number" name="student[edu10CgpaMax]" min="0" max="1000" required ></td>
+      <td><input class="form-control" type="text" name="student[edu10Year]" minlength="4" maxlength="4" required ></td>
+      <td><input class="form-control" id="edu10CgpaObt" step="0.01" type="number" name="student[edu10CgpaObt]" min="0"  required ></td>
+      <td><input class="form-control" id="edu10CgpaMax" step="0.01" type="number" name="student[edu10CgpaMax]" min="0" required ></td>
     </tr>
     <tr>
       <td><input class="form-control" type="text" name="student[edu12Name]" required ></td>
-      <td><select class="form-control" name="student[edu12Type]" required >
-                        <option value="10th" >10th </option>
-                        <option value="+2" selected >+2 or equivalent</option>
-                        <option value="Under Graduation">Under Graduation</option>
-                    </select></td>
+      <td><input class="form-control" type="text" name="student[edu12Type]" value="+2 or equivalent" disabled></td>
       <td><input class="form-control" type="text" name="student[edu12Board]" value="" required ></td>
       <td><input class="form-control" type="text" name="student[edu12Stream]" value="" required ></td>
-      <td><input class="form-control" type="text" name="student[edu12Year]" required ></td>
-      <td><input class="form-control" step="0.01" type="number" name="student[edu12CgpaObt]" required min="0" max="1000"></td>
-      <td><input class="form-control" step="0.01" type="number" name="student[edu12CgpaMax]" required min="0" max="1000"></td>
+      <td><input class="form-control" type="text" name="student[edu12Year]" minlength="4" maxlength="4" required ></td>
+      <td><input class="form-control" id="edu12CgpaObt" step="0.01" type="number" name="student[edu12CgpaObt]" required min="0" max="1000"></td>
+      <td><input class="form-control" id="edu12CgpaMax" step="0.01" type="number" name="student[edu12CgpaMax]" required min="0" max="1000"></td>
     </tr>
     <tr>
       <td><input class="form-control" type="text" name="student[eduGradName]" required ></td>
-      <td><select class="form-control" name="student[eduGradType]" required>
-                        <option value="10th" selected="">10th </option>
-                        <option value="+2">+2 or equivalent</option>
-                        <option value="Under Graduation" selected>Under Graduation</option>
-                    </select></td>
+            <td><input class="form-control" type="text" name="student[eduGradType]" value="Graduation" disabled></td>
       <td><input class="form-control" type="text" name="student[eduGradBoard]" value="" required ></td>
       <td><input class="form-control" type="text" name="student[eduGradStream]" value="" required ></td>
-      <td><input class="form-control" type="text" name="student[eduGradYear]" required ></td>
-      <td><input class="form-control" step="0.01" name="student[eduGradCgpaObt]" type="number" min="0" max="1000" required ></td>
-      <td><input class="form-control" step="0.01" name="student[eduGradCgpaMax]" type="number" min="0" max="1000" required ></td>
+      <td><input class="form-control" type="text" name="student[eduGradYear]" minlength="4" maxlength="4" required ></td>
+      <td><input class="form-control" id="eduGradCgpaObt" step="0.01" name="student[eduGradCgpaObt]" type="number" min="0" max="1000" required ></td>
+      <td><input class="form-control" id="eduGradCgpaMax" step="0.01" name="student[eduGradCgpaMax]" type="number" min="0" max="1000" required ></td>
     </tr>
   </tbody>
 </table>
@@ -256,20 +299,21 @@ button.viewButton:hover{
     <div class="upload">
             <div class="row">
     <div class="col-md-6">
-        <p>*Upload single PDF document consisting of :</p>
+        <p><span style="color:red;">*</span>Upload single **PDF** document consisting of :</p>
         <ul>
             <li>Resume (CV)</li>
             <li>10th Certificate</li>
             <li>+2 Certificate</li>
             <li>College Semester Grade Cards</li>
+            <li>Other (Certified Skills)</li>
         </ul>
-        <input type="file" class="uploadbutton" name="doc" value="">
+        <input type="file" class="uploadbutton" name="doc" value="" required>
     </div>
 </div>
     </div>
     <div class="row">
         <div style="margin-bottom:10px;" class="col-md-12">
-          <h5>Enter Technical Skills </h5>
+          <h5>Enter Technical Skills / Certification Skills <span style="color:red;">*</span></h5>
             <textarea class="skillTag" name="student[skillTag]" rows="8" cols="80" required></textarea>
         </div>
         <div style="margin-bottom:10px;" class="col-md-6">

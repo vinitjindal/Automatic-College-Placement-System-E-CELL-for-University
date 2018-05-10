@@ -42,6 +42,16 @@ div.container.formnav{
     content: "×";
     font-style: normal;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
 </style>
 
@@ -75,7 +85,7 @@ div.container.formnav{
                 </div>
                 <div class="col-md-12">
                     <h5>Add Event Date:</h5>
-                    <input class="form-control" type="date" name="event[eventDate]" placeholder="abc@xyz.com">
+                    <input class="form-control" type="date" min="2000-01-02" name="event[eventDate]" placeholder="abc@xyz.com">
                 </div>
 
                 <div class="col-md-12">

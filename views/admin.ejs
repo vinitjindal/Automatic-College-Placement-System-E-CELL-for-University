@@ -42,8 +42,29 @@ div.container.formnav{
     content: "×";
     font-style: normal;
 }
-
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 </style>
+
+<script>
+    function set(){
+        var x= new Date();
+        var y=x.getFullYear();
+        var m=x.getMonth()+1;
+        var d=x.getDate();
+        document.getElementById("lastDate").min=y+"-"+m+"-"+d;
+        alert("Please enter correct Date!");
+    }
+    
+</script>
 
 </head>
 <body>
@@ -68,7 +89,7 @@ div.container.formnav{
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <h5>Branch: </h5>
+                    <h5>Branch: <span style="color:red;">*</span></h5>
                     <select class="form-control"name="company[branch]">
                         <optgroup label="Choose branch">
                             <option value="CSE" >CSE</option>
@@ -78,11 +99,11 @@ div.container.formnav{
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <h5>Last Applying Date</h5>
-                    <input class="form-control" min="01-01-2018" max="01-01-2099" type="date" name="company[lastDate]" required >
+                    <h5>Last Applying Date :<span style="color:red;">*</span></h5>
+                    <input class="form-control"  id="lastDate" max="2050-01-02" type="date" onclick="set()" name="company[lastDate]" required >
                 </div>
                 <div class="col-md-4">
-                    <h5>E-mail ID of company</h5>
+                    <h5>E-mail ID of company :<span style="color:red;">*</span></h5>
                     <input class="form-control" type="email" name="company[QuerlyID]" placeholder="abc@xyz.com" required>
                 </div>
                 <div class="col-md-12">
@@ -90,21 +111,21 @@ div.container.formnav{
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <h5>Profile (Skills) Required</h5>
+                    <h5>Profile (Skills) Required :<span style="color:red;">*</span></h5>
                     <textarea class="recruitskillTag" name="company[projectSkill]" required></textarea>
                 </div>
             </div>
             <h4>Candidate Requirement</h4>
             <div class="row">
                 <div class="col-md-2">
-                    <h5>Min. CGPA</h5></div>
+                    <h5>Min. CGPA :<span style="color:red;">*</span></h5></div>
                 <div class="col-md-2">
                     <input class="form-control" type="number" name="company[minCgpa]" min="0" step="0.1"max="10">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <h5>Type Of Company</h5></div>
+                    <h5>Type Of Company :<span style="color:red;">*</span></h5></div>
                 <div class="col-md-2">
                     <input class="form-control" type="text" name="company[typeCompany]" required>
                 </div>

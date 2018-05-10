@@ -442,6 +442,8 @@ app.get("/user/:username/userEdit",isLoggedIn,function(req,res){
 app.post("/user/:username/userEdit",isLoggedIn,multer(multerConfig).single('doc'),function(req,res){
     Student.update({username:req.params.username},{
     rollNo          :   req.params.username,    
+    dept            :   req.body.student.dept,
+    session         :   req.body.student.session,
     mobileNo        :   req.body.student.mobileNo,
     gender          :   req.body.student.gender,
     dob             :   req.body.student.dob,
@@ -528,5 +530,5 @@ function isLoggedIn(req,res,next) {
 
 // Listening the PORT And IP Output 
 app.listen(process.env.PORT,process.env.IP,function(){
-    console.log("Server Started");
+    console.log("Server Started on PORT "+process.env.PORT+" On the IP "+process.env.IP);
 });

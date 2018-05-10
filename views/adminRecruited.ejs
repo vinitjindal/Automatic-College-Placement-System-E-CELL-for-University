@@ -17,6 +17,11 @@ div.outercontainer{
 div.row.cgpa{
   margin-top: 20px;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 </style>
 </head>
 <body>
@@ -61,6 +66,7 @@ div.row.cgpa{
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>S.No</th>
                         <th>Student Name</th>
                         <th>Roll Number </th>
                         <th>E-Mail ID</th>
@@ -73,6 +79,7 @@ div.row.cgpa{
     <%  var companySkill=c.split(",")           %>
     <%  var s                                   %>
     <%  var studentSkill                        %>
+    <%  var count=1;                            %>
     <%  student.forEach(function(Student){      %>
     <%    count=0                               %>
     <%    if(Student.eduGradCgpaObt>=company.minCgpa){     %>
@@ -88,12 +95,13 @@ div.row.cgpa{
          <%                                }) %>
            <% if(count==companySkill.length){ %>
            <tr>
+            <td><%=count%></td>   
             <td><%=Student.firstName%> <%=Student.midName%> <%=Student.lastName%></td>   
             <td><%=Student.rollNo%></td>   
             <td><%=Student.mailId%></td>   
             <td><%=Student.eduGradCgpaObt%></td>   
            </tr>
-            <%                         }     %>
+            <%   count++                      }     %>
             <%                             }  %>
             <% });                            %>
                 </tbody>

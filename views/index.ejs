@@ -88,6 +88,39 @@
 .footlink:hover{
     color:red;
 }
+div.jumbotron{
+    margin-bottom:0px;
+}
+
+#iFeatures {
+  position: sticky;
+  width: 100%;
+  height: 50px;
+  left: 0;
+  bottom: 126px;
+  background-color: #F9BF3B;
+}
+.ticker {
+  position: absolute;
+  
+  left: 40px;
+  right: 10px;
+  bottom: 10%;
+  overflow: hidden;
+}
+
+.ticker p {
+  position: relative;
+  top: 0;
+  white-space: nowrap;
+  width: auto;
+  color: red;
+}
+
+.ticker a {
+  color: red;
+}
+
     </style>
 
 </head>
@@ -110,13 +143,22 @@
     </nav>
     <!-- navbar finished! -->
     <!-- Header - jumbotron started -->
-    <div class="header_jumbotron">
+    <div style="margin-bottom:0px;" class="header_jumbotron">
         <div class="jumbotron">
             <h1 class="text-right">Placement Cell Division</h1>
             <p class="text-right" style="color:red;">#Explore Your Potential</p>
             <p class="text-right link">Learn More </p>
             <p></p>
         </div>
+    </div>
+    
+    
+    
+        <div id="iFeatures">
+    <div class="ticker">
+      <li><p><a href="##">Read More.</a>Chitkara provides 100% placement. Having highest placement Ratio with quality jobs. Students bid Good package!.</p></li>
+    <li><p><a href="##">Don't forget to check out over event section. Find more details and achievements of Chitkara Placement Cell. Feel free to check it out.</a></p></li>
+    </div>
     </div>
     <!-- Header jumbotron finishes -->
     <!-- mid body text started -->
@@ -185,6 +227,33 @@
     </div>
     <!-- footer body finished -->
     <script src="assets/js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+  var block_arr = $('.ticker li p').map(function() { return $(this).get(0);}).toArray();
+  
+  var ticker_item = $(block_arr[0]);
+  $(".ticker").html(ticker_item);
+  var ticker_width = $(".ticker").width();
+  var text_x = ticker_width;
+    
+  console.log(block_arr.indexOf(ticker_item.get(0)));
+  console.log(block_arr.length);
+
+  scroll_ticker = function() {    
+    text_x--;
+    ticker_item.css("left", text_x);
+    if (text_x < -1 * ticker_item.width()) {
+      ticker_item = $(block_arr[(block_arr.indexOf(ticker_item.get(0)) + 1 == block_arr.length) ? 0 : block_arr.indexOf(ticker_item.get(0)) + 1]);
+      ticker_item.css("left", text_x);
+      $(".ticker").html(ticker_item);
+      text_x = ticker_width;
+    }
+  }
+  setInterval(scroll_ticker, 7);
+});
+
+        
+    </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
